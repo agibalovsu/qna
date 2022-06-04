@@ -1,6 +1,7 @@
-class AnswersController < ApplicationController
+# frozen_string_literal: true
 
-	before_action :find_question, only: :create
+class AnswersController < ApplicationController
+  before_action :find_question, only: :create
 
   def create
     @answer = @question.answers.new(answer_params)
@@ -14,20 +15,15 @@ class AnswersController < ApplicationController
 
   private
 
-  def set_answer
-  	@answer = Answer.find(params[:id])
-  end
-
   def find_question
-    if params[:question_id]
-      @question = Question.find(params[:question_id])
-    else
-      @question = @answer.question
-    end
+    @question = if params[:question_id]
+                  Question.find(params[:question_id])
+                else
+                  @answer.question
+                end
   end
 
   def answer_params
     params.require(:answer).permit(:body)
   end
 end
-
