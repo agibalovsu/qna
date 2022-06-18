@@ -27,8 +27,10 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question.destroy
-    redirect_to questions_path, notice: 'Question was successfully deleted'
+    if question.user.author?(question)
+      question.destroy
+      redirect_to questions_path, notice: 'Question was successfully deleted'
+    end
   end
 
   private
