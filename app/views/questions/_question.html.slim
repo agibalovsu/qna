@@ -1,0 +1,7 @@
+- if current_user.present? && current_user.author?(question)
+	p = question.title
+	p = question.body
+	p = link_to 'Remove question', question_path(question), method: :delete
+- else
+	p = question.title
+	p = question.body

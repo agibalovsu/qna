@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-ffeature 'User can view list of answers to the question on question page', %q{ 
-  In order to view list of answers on question page 
+feature 'User can view list of answers to the question on question page', "
+  In order to view list of answers on question page
   As an unauthenticated user
   I'd like to be able to view list of answers
-} do 
+" do
   given(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:answers) { create_list(:answer, 3, question: question, user: user) }

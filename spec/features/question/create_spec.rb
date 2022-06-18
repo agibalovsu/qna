@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can create question', %q{ 
+feature 'User can create question', "
   In order to get answer from a community
   As an authenticated user
   I'd like to be able to ask the question
-} do 
-
+" do
   given(:user) { create(:user) }
 
   describe 'Authenticated user' do
-
-    background do 
+    background do
       sign_in(user)
 
       visit questions_path
-      click_on 'Ask question'
+
+      click_on 'New question'
     end
 
     scenario 'asks a question' do
@@ -27,16 +28,16 @@ feature 'User can create question', %q{
       expect(page).to have_content 'text of the question'
     end
 
-    scenario 'asks a question with errors' do 
+    scenario 'asks a question with errors' do
       click_on 'Ask'
 
       expect(page).to have_content "Title can't be blank"
     end
   end
 
-  scenario 'Unauthenticated user tries to ask a question' do 
+  scenario 'Unauthenticated user tries to ask a question' do
     visit questions_path
-    click_on 'Ask question'
+    click_on 'New question'
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end

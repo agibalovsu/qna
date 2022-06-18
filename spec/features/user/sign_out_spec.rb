@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can sign out', %q{ 
-  In order to ask questions
+feature 'User can sign out', "
   As an authenticated user
   I'd like to be able to sign out
-} do
-
+" do
   given(:user) { create(:user) }
 
   scenario 'Registered user tries to sign out' do
     sign_in(user)
 
-    click_on 'Log out'
+    click_link 'Log out'
 
     expect(page).to have_content 'Signed out successfully.'
-    expect(current_path).to eq root_path
   end
 end

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can sign up', %q{ 
+feature 'User can sign up', "
   As an unauthenticated user
-  I'd like to be able to sign in
-} do
-
+  I'd like to be able to sign up
+" do
   given(:user) { create(:user) }
 
   background { visit new_user_registration_path }
@@ -15,10 +16,7 @@ feature 'User can sign up', %q{
     fill_in 'Password confirmation', with: 'userpassword'
     click_on 'Sign up'
 
-    open_email('user@domain.com')
-    current_email.click_link 'Confirm my account'
-    expect(page).to have_content 'Your email address has been successfully confirmed.'
-    expect(current_path).to eq new_user_session_path
+    expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
   scenario 'Sign up with error(blank fields)' do
