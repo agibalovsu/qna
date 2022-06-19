@@ -1,19 +1,33 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_question, only: :create
+  before_action :find_answer, only: :destroy
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = @question.answers.create(answer_params)
+    @answer.user = current_user
 
     if @answer.save
-      redirect_to question_path(@answer.question)
+      redirect_to question_path(@answer.question), notice: 'Your Answer was successfully created'
     else
-      render :new
+      render :create
+    end
+  end
+
+  def destroy
+    if @answer.user.author?(@answer)
+      @answer.destroy
+      redirect_to question_path(@answer.question), notice: 'Answer successfully deleted.'
     end
   end
 
   private
+
+  def find_answer
+    @answer = Answer.find(params[:id])
+  end
 
   def find_question
     @question = if params[:question_id]

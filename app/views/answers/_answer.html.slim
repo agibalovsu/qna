@@ -1,0 +1,5 @@
+- if current_user.present? &&  current_user.author?(answer)
+	p = answer.body
+	p = link_to 'Remove answer', answer_path(answer), method: :delete
+-else
+	p = answer.body
