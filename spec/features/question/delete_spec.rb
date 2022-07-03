@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-feature 'User can delete question', '
+feature 'User can delete question', %q{'
   As an author the question
   can delete the question
-' do
+} do
   given(:author) { create(:user) }
   given(:user) { create(:user) }
-  given!(:question) { create(:question, user: author) }
+  given(:question) { create(:question, user: author) }
 
   scenario 'Author delete question' do
     sign_in(author)
@@ -33,7 +33,7 @@ feature 'User can delete question', '
   scenario 'Unauthenticated user delete question' do
     visit questions_path
 
-    click_on 'MyString'
+    visit question_path(question)
 
     expect(page).to_not have_content 'Remove question'
   end

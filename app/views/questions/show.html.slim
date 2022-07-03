@@ -1,6 +1,14 @@
-= render @question
+.question
+	= render @question
 
-= render @question.answers
-  
+.answers
+	= render @question.answers
+	
+.answer-errors
+  = render "shared/errors", resource: @answer
+ 
 = render 'answers/form'
+
+= render 'shared/header'
+
 
