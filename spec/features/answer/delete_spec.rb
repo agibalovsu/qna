@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-feature 'User can delete his answer', %q{
+feature 'User can delete his answer', "
   As an author of answer
   I'd like ot be able to delete my answer
-} do
+" do
   given(:author) { create(:user) }
   given(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
@@ -15,12 +15,12 @@ feature 'User can delete his answer', %q{
     sign_in(author)
 
     visit question_path(question)
-  
+
     within '.answers' do
       click_on 'Remove answer'
 
       expect(page).to_not have_content answer.body
-    end 
+    end
   end
 
   scenario 'Non author delete answer' do

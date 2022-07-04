@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can edit his answer', %q{
+feature 'User can edit his answer', "
   In order to correct mistakes
   As an author of answer
   I'd like ot be able to edit my answer
-} do
+" do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:answer) { create(:answer, question: question, user: user) }
@@ -25,8 +27,8 @@ feature 'User can edit his answer', %q{
     end
   end
 
-  describe 'Author tries', js: true do 
-    background do 
+  describe 'Author tries', js: true do
+    background do
       sign_in(user)
       visit question_path(question)
       within '.answers' do

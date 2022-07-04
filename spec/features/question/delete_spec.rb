@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-feature 'User can delete question', %q{'
+feature 'User can delete question', "'
   As an author the question
   can delete the question
-} do
+" do
   given(:author) { create(:user) }
   given(:user) { create(:user) }
   given(:question) { create(:question, user: author) }

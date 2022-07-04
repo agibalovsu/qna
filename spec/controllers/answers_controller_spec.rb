@@ -48,7 +48,7 @@ RSpec.describe AnswersController, type: :controller do
       end
     end
   end
-  
+
   describe 'PATCH #update' do
     let(:author) { create(:user) }
     let!(:answer) { create(:answer, question: question, user: author) }
@@ -86,7 +86,7 @@ RSpec.describe AnswersController, type: :controller do
       end
 
       it 're-render question show' do
-        delete :destroy, params: { id: answer }, format: :js 
+        delete :destroy, params: { id: answer }, format: :js
         expect(response).to render_template :destroy
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe AnswersController, type: :controller do
 
   describe 'PATCH #best' do
     let(:author) { create(:user) }
-    let!(:question) { create(:question, user: author)}
+    let!(:question) { create(:question, user: author) }
 
     context 'user an author' do
       before { login(author) }

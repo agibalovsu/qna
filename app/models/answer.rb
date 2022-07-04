@@ -11,12 +11,12 @@ class Answer < ApplicationRecord
 
   default_scope -> { order('best DESC, created_at') }
 
-  scope :best, -> { where(best: true)}
+  scope :best, -> { where(best: true) }
 
   def best!
     transaction do
       question.answers.best.update_all(best: false)
-      update!(best: true)  
+      update!(best: true)
     end
   end
 

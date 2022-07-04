@@ -16,8 +16,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @question = current_user.questions.new(question_params)
@@ -32,7 +31,6 @@ class QuestionsController < ApplicationController
   def update
     @question.update(question_params)
   end
-
 
   def destroy
     if current_user.present? && current_user.author?(question)

@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Best answer', %q{
+feature 'Best answer', '
   to cheese the answer which is the best
   As an authenticated user
   I want to be able to set best answer to my question
-} do
-
+' do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:first_answer) { create(:answer, question: question, user: user) }
@@ -19,7 +20,7 @@ feature 'Best answer', %q{
   end
 
   describe 'Authenticated user is question author', js: true do
-    background do 
+    background do
       sign_in(user)
       visit question_path(question)
     end
