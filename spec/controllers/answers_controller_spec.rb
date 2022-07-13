@@ -102,7 +102,9 @@ RSpec.describe AnswersController, type: :controller do
 
   describe 'PATCH #best' do
     let(:author) { create(:user) }
-    let!(:question) { create(:question, user: author) }
+    let(:answer_author) { create(:user) }
+    let!(:new_question) { create(:question, user: author) }
+    let!(:answer) { create(:answer, question: new_question, user: answer_author) }
 
     context 'user an author' do
       before { login(author) }

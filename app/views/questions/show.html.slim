@@ -1,18 +1,21 @@
 .question
   = render @question
 
-- if @question.files.attached?
-  - @question.files.each do |file|
-    p = link_to file.filename.to_s, url_for(file)
+  - if question.files.attached?
+    = render 'attachments/attachment', resource: question
+
+.answer-errors
+  = render "shared/errors", resource: @answer
 
 .answers
   = render @question.answers
 
-.answer-errors
-  = render "shared/errors", resource: @answer
- 
 = render 'answers/form'
 
 = render 'shared/header'
+
+
+ 
+
 
 

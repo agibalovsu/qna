@@ -38,7 +38,7 @@ feature 'User can create question', "
       fill_in 'Title', with: 'question title'
       fill_in 'Body', with: 'text of the question'
 
-      attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+      attach_files 
       click_on 'Ask'
 
       expect(page).to have_link 'rails_helper.rb'

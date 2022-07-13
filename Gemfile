@@ -61,6 +61,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 4.0'
   gem 'factory_bot_rails'
+  gem 'aws-sdk'
 end
 
 group :development do
@@ -82,6 +83,8 @@ group :test do
   gem "shoulda-matchers"
   gem "rails-controller-testing"
   gem "launchy"
+  gem 'database_cleaner-active_record'
+
 end
 
 

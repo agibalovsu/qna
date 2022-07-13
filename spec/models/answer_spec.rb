@@ -11,6 +11,10 @@ RSpec.describe Answer, type: :model do
   it { should have_db_index :question_id }
   it { should have_db_index :user_id }
 
+  it 'have many attached file' do 
+    expect(Answer.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)
+  end
+
   describe '#best!' do
     let(:user) { create(:user) }
     let(:question) { create(:question, user: user) }

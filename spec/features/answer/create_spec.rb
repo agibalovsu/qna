@@ -31,6 +31,16 @@ feature 'User can create answer', '
 
       expect(page).to have_content "Body can't be blank"
     end
+
+    scenario 'create answer with attached files' do 
+      fill_in 'Your answer', with: 'text of the answer'
+
+      attach_files 
+      click_on 'Reply'
+
+      expect(page).to have_link 'rails_helper.rb'
+      expect(page).to have_link 'spec_helper.rb'
+    end
   end
 
   scenario 'Not authenticated user answer a question' do
