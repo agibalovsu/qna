@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can remove his question attachments', %q{
+feature 'User can remove his question attachments', "
   In order to correct mistakes
   As an author of answer
   I'd like ot be remove my question attachments
-} do
-
-  given(:author) {create(:user)}
-  given(:user) {create(:user)}
-  given(:question) {create(:question, user: author)}
+" do
+  given(:author) { create(:user) }
+  given(:user) { create(:user) }
+  given(:question) { create(:question, user: author) }
 
   describe 'Authenticated user', js: true do
-    background do 
+    background do
       sign_in(author)
       add_file_to(question)
       visit question_path(question)
@@ -22,7 +23,7 @@ feature 'User can remove his question attachments', %q{
         click_on 'remove'
       end
 
-      within ".question" do
+      within '.question' do
         expect(page).to_not have_link 'rails_helper.rb'
       end
     end
@@ -37,8 +38,7 @@ feature 'User can remove his question attachments', %q{
       end
     end
 
-    scenario 'Not authenticated user delete question attachment' do
-      click_on 'Log out'
+    scenario 'Not authenticated user delete question attachment', js: true do
       visit question_path(question)
 
       within ".attachment-#{question.files.first.id}" do

@@ -10,13 +10,13 @@ feature 'User can edit his question', "
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
-  scenario 'Unauthenticated can not edit question' do
+  scenario 'Unauthenticated can not edit question', js: true do
     visit question_path(question)
 
     expect(page).to_not have_link 'Edit question'
   end
 
-  scenario "tries to edit other user's question" do
+  scenario "tries to edit other user's question", js: true do
     another_user = create(:user)
     sign_in(another_user)
 

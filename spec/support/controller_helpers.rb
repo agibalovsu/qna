@@ -7,6 +7,6 @@ module ControllerHelpers
   end
 
   def attach_file_to(model)
-    model.files.attach(io: File.open("#{Rails.root.join('spec/rails_helper.rb')}"), filename: 'rails_helper.rb')
+    model.files.attach(io: File.open(Rails.root.join('spec/rails_helper.rb').to_s), filename: 'rails_helper.rb')
   end
 end

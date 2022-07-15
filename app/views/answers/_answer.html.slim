@@ -1,3 +1,4 @@
+div class = "answer-#{answer.id}"
 - if answer.best?
   p = answer.body
   h3 = 'best answer'
@@ -21,7 +22,6 @@
 
 - if current_user.present? && !answer.best? && current_user.author?(answer.question) 
     p = link_to 'Choose the best', best_answer_path(answer), class: 'best-answer-link', remote: true, data: { answer_id: answer.id }, method: :patch
-
    
 - if answer.files.attached?
   = render 'attachments/attachment', resource: answer

@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def create
-    @question = current_user.questions.new(question_params)
+    @question = current_user.questions.with_attached_files.new(question_params)
 
     if @question.save
       redirect_to @question, notice: 'Your Question was successfully created'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AttachmentsController, type: :controller do
@@ -14,7 +16,6 @@ RSpec.describe AttachmentsController, type: :controller do
     end
 
     context 'user an author' do
-
       it 'delete question attachment' do
         expect do
           delete :destroy,
@@ -44,11 +45,15 @@ RSpec.describe AttachmentsController, type: :controller do
       before { login(user) }
 
       it 'delete the question attachment' do
-        expect { delete :destroy, params: { id: question.files.first }, format: :js}.to_not change(ActiveStorage::Attachment, :count)
+        expect do
+          delete :destroy, params: { id: question.files.first }, format: :js
+        end.to_not change(ActiveStorage::Attachment, :count)
       end
 
       it 'delete the answer attachment' do
-        expect { delete :destroy, params: { id: answer.files.first }, format: :js}.to_not change(ActiveStorage::Attachment, :count)
+        expect do
+          delete :destroy, params: { id: answer.files.first }, format: :js
+        end.to_not change(ActiveStorage::Attachment, :count)
       end
     end
   end
