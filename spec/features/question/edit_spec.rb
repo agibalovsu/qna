@@ -7,21 +7,22 @@ feature 'User can edit his question', "
   As an author of answer
   I'd like ot be edit my question
 " do
-  given!(:user) { create(:user) }
-  given!(:question) { create(:question, user: user) }
+  given(:user) { create(:user) }
+  given(:question) { create(:question, user: user) }
 
-  scenario 'Unauthenticated can not edit question' do
+  scenario 'Unauthenticated can not edit question', js: true do
     visit question_path(question)
 
     expect(page).to_not have_link 'Edit question'
   end
 
-  scenario "tries to edit other user's question" do
-    any_user = create(:user)
-    sign_in(any_user)
+  scenario "tries to edit other user's question", js: true do
+    another_user = create(:user)
+    sign_in(another_user)
 
     visit question_path(question)
 
+    expect(page).to_not have_selector 'file'
     expect(page).to_not have_link 'Edit question'
   end
 
@@ -44,6 +45,20 @@ feature 'User can edit his question', "
         expect(page).to have_content 'Question body'
         expect(page).to_not have_selector 'textfield'
         expect(page).to_not have_selector 'textarea'
+      end
+    end
+
+    scenario 'edits his question with attach files' do
+      within '.question' do
+        fill_in 'Edit title', with: 'Question title'
+        fill_in 'Edit body', with: 'Question body'
+
+        attach_files
+        click_on 'Save'
+
+        expect(page).to_not have_selector 'file'
+        expect(page).to have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
       end
     end
 

@@ -7,6 +7,7 @@ import "jquery-ui"
 import "jquery_ujs"
 import "popper"
 import "bootstrap"
+import "activestorage"
 import "./answers"
 import "./questions"
 

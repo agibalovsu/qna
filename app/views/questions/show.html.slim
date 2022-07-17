@@ -1,14 +1,21 @@
 .question
   = render @question
 
-.answers
-  = render @question.answers
+  - if question.files.attached?
+    = render 'attachments/attachment', resource: question
 
 .answer-errors
   = render "shared/errors", resource: @answer
- 
+
+.answers
+  = render @question.answers
+
 = render 'answers/form'
 
 = render 'shared/header'
+
+
+ 
+
 
 

@@ -6,7 +6,7 @@ p = question.body
 
 - if current_user.present? && current_user.author?(question)
 	p = link_to 'Remove question', question_path(question), method: :delete
-	p = link_to 'Edit question', '#', class: 'edit-question-link', data: { question_id: question.id }
+	p = link_to 'Edit question', '#', class: 'edit-question-link', remote: true, data: { question_id: question.id }
 
 = form_with model: question, class: 'hidden', html: { id: "edit-question-#{question.id}" }, local: false do |f| 
   p 
@@ -16,4 +16,8 @@ p = question.body
     = f.label :body, 'Edit body'
     = f.text_area :body
   p
+    = f.label :files
+    = f.file_field :files, multiple: true
+  p
     = f.submit 'Save'
+

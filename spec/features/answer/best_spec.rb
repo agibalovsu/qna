@@ -8,7 +8,8 @@ feature 'Best answer', '
   I want to be able to set best answer to my question
 ' do
   given!(:user) { create(:user) }
-  given!(:question) { create(:question, user: user) }
+  given!(:author) { create(:user) }
+  given!(:question) { create(:question, user: author) }
   given!(:first_answer) { create(:answer, question: question, user: user) }
   given!(:second_answer) { create(:answer, question: question, user: user) }
   given!(:third_answer) { create(:answer, question: question, user: user) }

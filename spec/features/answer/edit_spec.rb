@@ -56,5 +56,18 @@ feature 'User can edit his answer', "
       end
       expect(page).to have_content "Body can't be blank"
     end
+
+    scenario 'edits his answer with attach files' do
+      within '.answers' do
+        fill_in 'Your answer', with: 'edited answer'
+
+        attach_files
+        click_on 'Save'
+
+        expect(page).to_not have_selector 'file'
+        expect(page).to have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
+      end
+    end
   end
 end
