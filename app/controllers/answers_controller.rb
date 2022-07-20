@@ -33,13 +33,13 @@ class AnswersController < ApplicationController
 
   def find_question
     @question = if params[:question_id]
-                  Question.find(params[:question_id])
+                  Question.with_attached_files.find(params[:question_id])
                 else
                   @answer.question
                 end
   end
 
   def answer_params
-    params.require(:answer).permit(:body, files: [])
+    params.require(:answer).permit(:body, files: [], links_attributes: [:name, :url])
   end
 end

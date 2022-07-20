@@ -22,7 +22,7 @@ feature 'Best answer', '
 
   describe 'Authenticated user is question author', js: true do
     background do
-      sign_in(user)
+      sign_in(author)
       visit question_path(question)
     end
 

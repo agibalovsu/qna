@@ -10,7 +10,7 @@ import "bootstrap"
 import "activestorage"
 import "./answers"
 import "./questions"
-
+import "./cocoon"
 
 
 

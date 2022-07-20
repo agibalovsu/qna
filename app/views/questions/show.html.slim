@@ -1,8 +1,5 @@
 .question
-  = render @question
-
-  - if question.files.attached?
-    = render 'attachments/attachment', resource: question
+  = render question
 
 .answer-errors
   = render "shared/errors", resource: @answer

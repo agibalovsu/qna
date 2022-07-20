@@ -1,0 +1,14 @@
+- resource.links.each do |link|
+    div class = "link-#{link.id}"
+      - if link.gist?
+        p = link.gist_content
+      - else
+        li= link_to link.name, link.url, target: :blank
+
+      - if current_user.author?(resource)
+        p = link_to 'remove', link_path(link),
+                class: 'delete-link-link',
+                remote: true,
+                method: :delete  
+
+  

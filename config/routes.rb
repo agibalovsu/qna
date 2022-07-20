@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   root to: 'questions#index'
 
   resources :attachments, only: :destroy
+  resources :links, only: :destroy
+  resources :badges, only: :index
 end
