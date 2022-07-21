@@ -13,12 +13,10 @@ feature 'User can remove his answer links', %q{
   given!(:link) { create(:link, linkable: answer) }
 
   describe 'Authenticated user', js: true do
-    bacground do 
-      sign_in(author) 
-      visit question_path(question) 
-    end
-
     scenario 'author of the answer removes link' do
+      sign_in(author) 
+      visit question_path(question)
+       
       within ".link-#{link.id}" do
         click_on 'remove'
       end
@@ -29,7 +27,6 @@ feature 'User can remove his answer links', %q{
     end
 
     scenario 'not author of the answer removes link' do
-      click_on 'Log out'
       sign_in(user)
       visit question_path(question)
 
@@ -37,13 +34,13 @@ feature 'User can remove his answer links', %q{
         expect(page).to_not have_link 'remove'
       end
     end
+  end
 
-  scenario 'Not authenticated user delete answer link' do
-      visit question_path(question)
+  scenario 'Not authenticated user delete answer link', js: true do
+    visit question_path(question)
 
-      within ".link-#{link.id}" do
-        expect(page).to_not have_link 'remove'
-      end
+    within ".link-#{link.id}" do
+      expect(page).to_not have_link 'remove'
     end
   end
 end

@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   before_action :find_link
 
   def destroy
-    @link.destroy
+      @link.destroy
   end
 
   private

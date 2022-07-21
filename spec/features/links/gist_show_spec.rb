@@ -10,7 +10,7 @@ feature 'All users can view gist content' do
   given!(:gist_content) { 'curl -XPOST -H "Authorization: token $GITHUB_TOKEN"' }
 
   describe 'User', js: true do
-    before { visit question_path(question) }
+    background { visit question_path(question) }
 
     scenario 'visible gist content in answer' do
       within ".link-#{link.id}" do

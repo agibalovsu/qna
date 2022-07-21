@@ -12,8 +12,10 @@ feature 'User can remove his question links', %q{
   given!(:link) { create(:link, linkable: question) }
 
   describe 'Authenticated user', js: true do
-    before { sign_in(author) }
-    before { visit question_path(question) }
+    background do 
+     sign_in(author) 
+     visit question_path(question) 
+   end
 
     scenario 'author of the question removes link' do
       within ".link-#{link.id}" do

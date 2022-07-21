@@ -5,7 +5,7 @@ div class = "question-#{question.id}"
   p = question.title
   p = question.body
 
-  - if question.user.author?(question)
+  - if current_user.author?(question)
     = render 'links/link', resource: question
 
   - if current_user.present? && current_user.author?(question)
@@ -37,6 +37,6 @@ div class = "question-#{question.id}"
       p = image_tag question.badge.image, title: question.badge.title, size: "50x50"
     p = question.badge.title
 
-  - if question.files.attached? && question.user.author?(question)
+  - if question.files.attached? && current_user.author?(question)
     = render 'attachments/attachment', resource: question 
 
