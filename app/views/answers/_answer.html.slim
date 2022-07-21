@@ -4,8 +4,9 @@ div class = "answer-#{answer.id}"
     h3 = 'best answer'
   - else
     p = answer.body
-    
-  = render 'links/link', resource: answer  
+  
+  - if answer.user.author?(answer) 
+    = render 'links/link', resource: answer  
 
   - if current_user.present? && current_user.author?(answer)
   	p = link_to 'Remove answer', answer_path(answer), class: 'delete-answer-link', remote: true, method: :delete, data: { answer_id: answer.id }
@@ -29,10 +30,10 @@ div class = "answer-#{answer.id}"
     p    
       = f.submit 'Save'
 
-  - if current_user.present? && !answer.best? && current_user.author?(answer.question) 
+  - if current_user.present? && !answer.best? && answer.user.author?(answer.question) 
       p = link_to 'Choose the best', best_answer_path(answer), class: 'best-answer-link', remote: true, data: { answer_id: answer.id }, method: :patch
      
-  - if answer.files.attached?
+  - if answer.files.attached? && current_user.author?(answer)
     = render 'attachments/attachment', resource: answer
 
 

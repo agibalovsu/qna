@@ -5,7 +5,8 @@ div class = "question-#{question.id}"
   p = question.title
   p = question.body
 
-  = render 'links/link', resource: question
+  - if question.user.author?(question)
+    = render 'links/link', resource: question
 
   - if current_user.present? && current_user.author?(question)
   	p = link_to 'Remove question', question_path(question), method: :delete
@@ -30,6 +31,12 @@ div class = "question-#{question.id}"
     p
       = f.submit 'Save'
 
-  - if question.files.attached?
+  - if question.badge.present?
+    .badge
+      p Badge:
+      p = image_tag question.badge.image, title: question.badge.title, size: "50x50"
+    p = question.badge.title
+
+  - if question.files.attached? && question.user.author?(question)
     = render 'attachments/attachment', resource: question 
 

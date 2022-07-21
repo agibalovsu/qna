@@ -15,6 +15,13 @@ module FeatureHelpers
     ].map(&:to_s)
   end
 
+  def add_image_to(badge)
+    badge.image.attach(
+      io: File.open(Rails.root.join('app/assets/images/badges/default.png').to_s),
+      filename: 'default.png'
+    )
+  end
+
   def add_file_to(model)
     model.files.attach(
       io: File.open(Rails.root.join('spec/rails_helper.rb').to_s),
