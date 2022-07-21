@@ -13,8 +13,9 @@ feature 'User can remove his answer attachments', "
   given(:answer) { create(:answer, question: question, user: author) }
 
   describe 'Authenticated user', js: true do
+    background { sign_in(author) }
+
     background do
-      sign_in(author)
       add_file_to(answer)
       visit question_path(question)
       fill_in 'Your answer', with: 'answer body'
@@ -43,7 +44,7 @@ feature 'User can remove his answer attachments', "
       end
     end
 
-    scenario 'Not authenticated user delete question attachment' do
+    scenario 'Not authenticated user delete question attachment', js: true do
       click_on 'Log out'
       visit question_path(question)
 

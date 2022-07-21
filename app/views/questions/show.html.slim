@@ -1,8 +1,5 @@
 .question
-  = render @question
-
-  - if question.files.attached?
-    = render 'attachments/attachment', resource: question
+  = render question
 
 .answer-errors
   = render "shared/errors", resource: @answer
@@ -14,7 +11,7 @@
 
 = render 'shared/header'
 
-
+p = link_to 'Back', questions_path
  
 
 

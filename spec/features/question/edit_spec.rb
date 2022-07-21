@@ -48,7 +48,21 @@ feature 'User can edit his question', "
       end
     end
 
-    scenario 'edits his question with attach files' do
+    scenario 'edits his question be adding a link' do
+      within '.question' do
+        click_on 'add link'
+
+        fill_in 'Link name', with: 'Thinknetica'
+        fill_in 'Url', with: 'http://thinknetica.com'
+
+        click_on 'Save'
+
+        expect(page).to have_link 'Thinknetica', href: 'http://thinknetica.com'
+        expect(page).to_not have_selector 'textfield'
+      end
+    end
+
+    scenario 'edits his question with attach files', js: true do
       within '.question' do
         fill_in 'Edit title', with: 'Question title'
         fill_in 'Edit body', with: 'Question body'
