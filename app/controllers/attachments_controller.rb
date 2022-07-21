@@ -5,7 +5,7 @@ class AttachmentsController < ApplicationController
   before_action :find_attachment
 
   def destroy
-    @attachment.current_user.purge
+    @attachment.purge
   end
 
   private
