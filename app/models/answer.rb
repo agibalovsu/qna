@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Answer < ApplicationRecord
   MAX_BEST_ANSWERS_COUNT = 1
 

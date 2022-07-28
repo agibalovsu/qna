@@ -1,7 +1,9 @@
-class BadgesController < ApplicationController
-	before_action :authenticate_user!
+# frozen_string_literal: true
 
-	def index
-		@badges = current_user.badges
-	end
+class BadgesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @badges = current_user.badges
+  end
 end

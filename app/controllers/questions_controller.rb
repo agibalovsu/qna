@@ -2,7 +2,7 @@
 
 class QuestionsController < ApplicationController
   include Liked
-  
+
   before_action :authenticate_user!, except: %i[index show]
   before_action :question, only: %i[show destroy update]
 
@@ -53,6 +53,7 @@ class QuestionsController < ApplicationController
   helper_method :question
 
   def question_params
-    params.require(:question).permit(:title, :body, files: [], links_attributes: [:name, :url], badge_attributes: [:title, :image])
+    params.require(:question).permit(:title, :body, files: [], links_attributes: %i[name url],
+                                                    badge_attributes: %i[title image])
   end
 end

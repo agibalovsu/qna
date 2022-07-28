@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LinksController, type: :controller do
@@ -12,7 +14,6 @@ RSpec.describe LinksController, type: :controller do
     before { login(author) }
 
     context 'user an author' do
-
       it 'delete question link' do
         expect do
           delete :destroy,

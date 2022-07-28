@@ -26,18 +26,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#liked?' do 
+  describe '#liked?' do
     let(:user) { create(:user) }
     let(:liker) { create(:user) }
     let(:question) { create(:question, user: user) }
 
     before { question.vote_up(liker) }
 
-    it 'user already liked question' do 
+    it 'user already liked question' do
       expect(liker).to be_liked(question)
     end
 
-    it 'user has not liked question' do 
+    it 'user has not liked question' do
       expect(user).to_not be_liked(question)
     end
   end

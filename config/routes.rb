@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  
+
   concern :likable do
     member do
       post :like_up, :like_down

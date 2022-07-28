@@ -23,4 +23,3 @@ class User < ApplicationRecord
     likes.exists?(likable: item)
   end
 end
-

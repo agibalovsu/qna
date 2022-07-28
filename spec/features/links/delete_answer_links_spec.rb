@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can remove his answer links', %q{
+feature 'User can remove his answer links', "
   In order to correct mistakes
   As an author of answer
   I'd like ot be remove my answer links
-} do
-
+" do
   given(:author) { create(:user) }
   given(:user) { create(:user) }
   given(:question) { create(:question, user: author) }
@@ -14,14 +15,14 @@ feature 'User can remove his answer links', %q{
 
   describe 'Authenticated user', js: true do
     scenario 'author of the answer removes link' do
-      sign_in(author) 
+      sign_in(author)
       visit question_path(question)
-       
+
       within ".link-#{link.id}" do
         click_on 'remove'
       end
 
-      within ".question" do
+      within '.question' do
         expect(page).to_not have_link link.url
       end
     end

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can vote for a answer', %q{
+feature 'User can vote for a answer', "
   In order to show that answer is good
   As an authenticated user
   I'd like to be able to set 'like' for answer.
-} do
+" do
   given(:liker) { create(:user) }
   given(:author) { create(:user) }
   given!(:question) { create(:question, user: author) }

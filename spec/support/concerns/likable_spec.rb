@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.shared_examples_for 'likable' do
@@ -34,7 +36,7 @@ RSpec.shared_examples_for 'likable' do
     before { likable.vote_down(likers[0]) }
 
     it 'changed raiting' do
-      expect(Like.last.rating).to eq -1
+      expect(Like.last.rating).to eq(-1)
     end
 
     it 'like user is a @liker' do
@@ -53,6 +55,6 @@ RSpec.shared_examples_for 'likable' do
     likable.vote_down(likers[3])
     likable.vote_down(likers[4])
 
-    expect(likable.rating_sum).to eq -1
+    expect(likable.rating_sum).to eq(-1)
   end
 end
