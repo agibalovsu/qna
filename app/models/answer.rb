@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Answer < ApplicationRecord
   MAX_BEST_ANSWERS_COUNT = 1
 
@@ -11,6 +9,8 @@ class Answer < ApplicationRecord
   has_many :links, dependent: :destroy, as: :linkable
 
   accepts_nested_attributes_for :links, reject_if: :all_blank
+
+  include Likable
 
   validates :body, presence: true
   validate :best_count, on: :best

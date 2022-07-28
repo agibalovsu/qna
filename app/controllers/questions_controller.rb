@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  include Liked
+  
   before_action :authenticate_user!, except: %i[index show]
   before_action :question, only: %i[show destroy update]
 

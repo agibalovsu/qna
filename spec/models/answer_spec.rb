@@ -15,6 +15,8 @@ RSpec.describe Answer, type: :model do
 
   it { should accept_nested_attributes_for :links }
 
+  it_behaves_like 'likable'
+
   it 'have many attached file' do
     expect(Answer.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)
   end

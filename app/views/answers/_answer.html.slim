@@ -5,8 +5,9 @@ div class = "answer-#{answer.id}"
   - else
     p = answer.body
   
-  - if current_user.author?(answer) 
-    = render 'links/link', resource: answer  
+  = render 'links/link', resource: answer 
+
+  = render 'shared/vote', resource: answer 
 
   - if current_user.present? && current_user.author?(answer)
   	p = link_to 'Remove answer', answer_path(answer), class: 'delete-answer-link', remote: true, method: :delete, data: { answer_id: answer.id }
