@@ -5,8 +5,9 @@ div class = "question-#{question.id}"
   p = question.title
   p = question.body
 
-  - if current_user.author?(question)
-    = render 'links/link', resource: question
+  = render 'links/link', resource: question
+
+  = render 'shared/vote', resource: question
 
   - if current_user.present? && current_user.author?(question)
   	p = link_to 'Remove question', question_path(question), method: :delete

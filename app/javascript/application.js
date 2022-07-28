@@ -4,13 +4,14 @@ import "controllers"
 
 import "jquery"
 import "jquery-ui"
-import "jquery_ujs"
+import Rails from "@rails/ujs"
+Rails.start()
 import "popper"
 import "bootstrap"
 import "activestorage"
 import "./answers"
 import "./questions"
-import "./cocoon"
+import "cocoon"
 
 
 

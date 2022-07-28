@@ -1,0 +1,17 @@
+div class = "rate #{resource.class}-#{resource.id}"
+  span.rating
+    =  "rating: #{resource.rating_sum}"
+  
+  span.voting class = "#{'hidden' if current_user&.liked?(resource)}"
+    - if current_user && !current_user.author?(resource) && !current_user&.liked?(resource)
+      p
+      = link_to 'like +', polymorphic_path(resource, action: :like_up), method: :post, remote: true, data: { type: :json }
+    - if current_user && !current_user.author?(resource) && !current_user&.liked?(resource)
+      p  
+      = link_to 'dislike -', polymorphic_path(resource, action: :like_down), method: :post, remote: true, data: { type: :json }
+  span.revoke
+    - if current_user && current_user&.liked?(resource)
+      p
+      = link_to 'revoke', polymorphic_path(resource, action: :revoke),
+        class: "revoke-link #{'hidden' unless current_user&.liked?(resource)}",
+        method: :delete, remote: true, data: { type: :json }

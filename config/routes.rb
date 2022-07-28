@@ -2,8 +2,16 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  resources :questions do
-    resources :answers, shallow: true, only: %i[create update destroy] do
+
+  concern :likable do
+    member do
+      post :like_up, :like_down
+      delete :revoke
+    end
+  end
+
+  resources :questions, concerns: :likable do
+    resources :answers, concerns: :likable, shallow: true, only: %i[create update destroy] do
       member do
         patch :best
       end

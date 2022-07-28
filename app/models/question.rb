@@ -8,6 +8,8 @@ class Question < ApplicationRecord
 
   has_one :badge, dependent: :destroy
 
+  include Likable
+
   accepts_nested_attributes_for :links, reject_if: :all_blank
   accepts_nested_attributes_for :badge, reject_if: :all_blank
 
