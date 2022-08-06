@@ -13,6 +13,7 @@ class Answer < ApplicationRecord
   accepts_nested_attributes_for :links, reject_if: :all_blank
 
   include Likable
+  include Commentable
 
   validates :body, presence: true
   validate :best_count, on: :best

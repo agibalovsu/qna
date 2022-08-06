@@ -9,6 +9,14 @@ div class = "answer-#{answer.id}"
 
   = render 'shared/vote', resource: answer 
 
+  .comments
+    - if current_user.present? 
+      = link_to 'New comment', '#', class: 'new-comment-link', remote: true, data: { klass: answer.class.to_s.downcase, id: answer.id }
+      = render 'comments/form', resource: answer
+
+      p Comments:
+      = render answer.comments
+
   - if current_user.present? && current_user.author?(answer)
   	p = link_to 'Remove answer', answer_path(answer), class: 'delete-answer-link', remote: true, method: :delete, data: { answer_id: answer.id }
   	p = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id }
