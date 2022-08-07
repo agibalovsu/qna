@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+import "application"
 import "jquery"
 import "jquery-ui"
 import Rails from "@rails/ujs"
@@ -11,7 +12,15 @@ import "bootstrap"
 import "activestorage"
 import "./answers"
 import "./questions"
+import "./comments"
 import "cocoon"
+import "@rails/actioncable"
+import "./channels"
+
+
+
+
+
 
 
 

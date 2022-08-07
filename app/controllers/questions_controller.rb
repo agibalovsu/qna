@@ -5,6 +5,10 @@ class QuestionsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :question, only: %i[show destroy update]
+  before_action :current_user_to_gon, only: %i[index show]
+  before_action :init_comment, only: %i[show update]
+
+  after_action :publish_question, only: :create
 
   def index
     @questions = Question.all
@@ -55,5 +59,22 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :body, files: [], links_attributes: %i[name url],
                                                     badge_attributes: %i[title image])
+  end
+
+  def current_user_to_gon
+    gon.current_user = current_user
+  end
+
+  def publish_question
+    return if @question.errors.any?
+
+    ActionCable.server.broadcast(
+      'questions',
+      @question.to_json(include: :user)
+    )
+  end
+
+  def init_comment
+    @comment = Comment.new
   end
 end
