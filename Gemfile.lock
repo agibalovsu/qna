@@ -1631,7 +1631,6 @@ DEPENDENCIES
   jsbundling-rails (~> 1.0)
   launchy
   net-http
-  oauth2
   octokit (~> 4.0)
   omniauth
   omniauth-github
