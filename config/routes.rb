@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks', registrations: 'oauth_registrations' }
 
   concern :likable do
     member do

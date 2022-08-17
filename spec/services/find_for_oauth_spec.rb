@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe FindForOauthService do
@@ -61,6 +63,18 @@ RSpec.describe FindForOauthService do
 
         expect(authorization.provider).to eq auth.provider
         expect(authorization.uid).to eq auth.uid
+      end
+    end
+
+    context 'user does not exist, provider does not transmit email' do
+      let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { city: 'mycity' }) }
+
+      it 'creates new empty user' do
+        expect { subject.call }.to_not change(User, :count)
+      end
+
+      it 'returns new user' do
+        expect(subject.call).to be_a(User)
       end
     end
   end

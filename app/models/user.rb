@@ -11,7 +11,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[github]
+         :omniauthable, omniauth_providers: %i[github vkontakte]
 
   def author?(model)
     id == model.user_id
@@ -30,6 +30,16 @@ class User < ApplicationRecord
   end
 
   def create_authorization(auth)
-    self.authorizations.create(provider: auth.provider, uid: auth.uid)
+    authorizations.create(provider: auth.provider, uid: auth.uid)
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['omniauth']
+        password = Devise.friendly_token[0, 20]
+        user.password = password
+        user.password_confirmation = password
+      end
+    end
   end
 end

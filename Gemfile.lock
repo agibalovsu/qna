@@ -1342,6 +1342,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    capybara-email (3.0.2)
+      capybara (>= 2.4, < 4.0)
+      mail
     childprocess (4.1.0)
     cocoon (1.2.15)
     concurrent-ruby (1.1.10)
@@ -1372,6 +1375,8 @@ GEM
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
+    faraday-retry (2.0.0)
+      faraday (~> 2.0)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -1408,6 +1413,8 @@ GEM
     jwt (2.4.1)
     launchy (2.5.0)
       addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     libv8 (3.16.14.19-x86_64-linux)
     loofah (2.18.0)
       crass (~> 1.0.2)
@@ -1464,6 +1471,8 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    omniauth-vkontakte (1.8.0)
+      omniauth-oauth2 (>= 1.5, <= 1.8.0)
     orm_adapter (0.5.0)
     pg (1.4.2)
     popper_js (2.11.5)
@@ -1617,11 +1626,13 @@ DEPENDENCIES
   bootsnap
   bootstrap
   capybara
+  capybara-email
   cocoon
   database_cleaner-active_record
   debug
   devise
   factory_bot_rails
+  faraday-retry
   gon
   handlebars
   importmap-rails
@@ -1630,11 +1641,13 @@ DEPENDENCIES
   jquery-ui-rails
   jsbundling-rails (~> 1.0)
   launchy
+  letter_opener
   net-http
   octokit (~> 4.0)
   omniauth
   omniauth-github
   omniauth-rails_csrf_protection
+  omniauth-vkontakte
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)

@@ -54,4 +54,18 @@ RSpec.describe User, type: :model do
       User.find_for_oauth(auth)
     end
   end
+
+  describe '.new_with_session' do
+    let!(:session)  { { 'omniauth' => { provider: 'facebook', uid: '123456' } } }
+    let(:result)    { User.new_with_session({}, session) }
+
+    it 'creates new user' do
+      expect(subject).to be_a_new(User)
+    end
+
+    it 'adds password for user' do
+      expect(result.password).to_not eq ''
+      expect(result.password_confirmation).to_not eq ''
+    end
+  end
 end
