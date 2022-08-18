@@ -55,17 +55,21 @@ gem 'sassc-rails'
 gem 'bootstrap'
 gem 'cocoon'
 gem 'devise'
+gem 'faraday-retry'
 gem 'gon'
 gem 'handlebars'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jsbundling-rails', '~> 1.0'
 gem 'octokit', '~> 4.0'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-vkontakte'
 gem 'rails-ujs'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'aws-sdk'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0'
@@ -73,6 +77,9 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'aws-sdk'
+  gem 'capybara-email'
+  gem 'letter_opener'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

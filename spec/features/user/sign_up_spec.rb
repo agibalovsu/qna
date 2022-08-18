@@ -2,47 +2,75 @@
 
 require 'rails_helper'
 
-feature 'User can sign up', "
-  As an unauthenticated user
-  I'd like to be able to sign up
+feature 'user can sign up', "
+  In order to ask questions
+  As an unregistered user
+  I'd like to be able to register
 " do
-  given(:user) { create(:user) }
-
   background { visit new_user_registration_path }
 
-  scenario 'Unregistered user tries to sign up' do
-    fill_in 'Email', with: 'user@domain.com'
-    fill_in 'Password', with: 'userpassword'
-    fill_in 'Password confirmation', with: 'userpassword'
+  scenario 'Unregistered user tries to register' do
+    fill_in 'Email', with: 'register@test.com'
+    fill_in 'Password', with: '123456'
+    fill_in 'Password confirmation', with: '123456'
     click_on 'Sign up'
 
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
-  scenario 'Sign up with error(blank fields)' do
-    fill_in 'Email', with: ''
-    fill_in 'Password', with: ''
-    fill_in 'Password confirmation', with: ''
-    click_on 'Sign up'
-
-    expect(page).to have_content "Email can't be blank"
-    expect(page).to have_content "Password can't be blank"
-  end
-
-  scenario 'Sign up with error(different passwords)' do
-    fill_in 'Email', with: 'user@domain.com'
-    fill_in 'Password', with: '12345678'
-    fill_in 'Password confirmation', with: '87654321'
+  scenario 'Unregistered user tries to register with invalid password confirmation' do
+    fill_in 'Email', with: 'register@test.com'
+    fill_in 'Password', with: '123456'
+    fill_in 'Password confirmation', with: '123'
     click_on 'Sign up'
 
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
 
-  scenario 'Sign up with error(email is already taken)' do
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password
-    click_button 'Sign up'
-    expect(page).to have_content 'Email has already been taken'
+  scenario 'Unregistered user tries to register with invalid data' do
+    click_on 'Sign up'
+
+    expect(page).to have_content "Email can't be blank"
+  end
+
+  describe 'Register with Omniauth services' do
+    describe 'GitHub' do
+      scenario 'with correct data' do
+        mock_auth_hash('github', email: 'test@test.ru')
+        click_button 'Sign in with Github'
+
+        expect(page).to have_content 'Successfully authenticated from Github account.'
+      end
+
+      scenario 'can handle authentication error with GitHub' do
+        invalid_mock('github')
+        click_button 'Sign in with Github'
+        expect(page).to have_content 'Could not authenticate you from GitHub because "Invalid credentials"'
+      end
+    end
+
+    describe 'Vkontakte' do
+      scenario 'with correct data, without email' do
+        mock_auth_hash('vkontakte', email: nil)
+        click_button 'Sign in with Vkontakte'
+
+        fill_in 'Email', with: 'register@test.com'
+        click_on 'Sign up'
+        expect(page).to have_content 'Welcome! You have signed up successfully.'
+      end
+
+      scenario 'with correct data, with email' do
+        mock_auth_hash('vkontakte', email: 'test@test.ru')
+        click_button 'Sign in with Vkontakte'
+        expect(page).to have_content 'Successfully authenticated from Vkontakte account.'
+      end
+
+      scenario 'can handle authentication error with Vkontakte' do
+        invalid_mock('vkontakte')
+        click_button 'Sign in with Vkontakte'
+
+        expect(page).to have_content 'Could not authenticate you from Vkontakte because "Invalid credentials"'
+      end
+    end
   end
 end
