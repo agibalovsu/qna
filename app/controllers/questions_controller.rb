@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
   before_action :current_user_to_gon, only: %i[index show]
   before_action :init_comment, only: %i[show update]
 
+  authorize_resource
+
   after_action :publish_question, only: :create
 
   def index
