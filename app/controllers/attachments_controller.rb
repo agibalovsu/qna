@@ -5,7 +5,8 @@ class AttachmentsController < ApplicationController
   before_action :find_attachment
 
   def destroy
-    @attachment.purge
+    authorize! :destroy, @attachment
+    @attachment&.purge
   end
 
   private

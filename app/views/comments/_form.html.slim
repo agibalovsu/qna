@@ -1,8 +1,10 @@
 = form_with model: [resource, @comment], class: 'hidden', html: {id: "comment-#{resource.class.to_s.downcase}-#{resource.id}"}, local: false do |f|
-    .comment-errors
-      = render 'shared/errors', resource: @comment
+      .comment-errors
+        = render 'shared/errors', resource: @comment
 
-    = f.label :body, 'Comment'
-    = f.text_area :body, class: 'form-control'
+      = f.label :body, 'Comment'
+      = f.text_area :body, class: 'form-control'
+      = f.submit 'Add comment'
 
-    = f.submit 'Add comment'
+  
+   

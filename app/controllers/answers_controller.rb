@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[create]
   before_action :find_answer, only: %i[destroy update best]
-  before_action :init_comment, only: %i[create update best]
+  before_action :init_comment, only: %i[create]
+
+  authorize_resource
 
   after_action :publish_answer, only: :create
 
@@ -33,12 +35,12 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy if current_user.author?(@answer)
+    @answer.destroy
     flash[:notice] = 'Answer successfully deleted.'
   end
 
   def best
-    @answer.best! if current_user.author?(@answer.question)
+    @answer.best!
   end
 
   private

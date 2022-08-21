@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_resource
 
+  authorize_resource
+
   after_action :publish_comment
 
   def create

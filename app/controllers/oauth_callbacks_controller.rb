@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OauthCallbacksController < Devise::OmniauthCallbacksController
-skip_before_action :verify_authenticity_token, only: %i[github vkontakte]
+  skip_before_action :verify_authenticity_token, only: %i[github vkontakte]
 
   def github
     sign_in_with_provider('Github')

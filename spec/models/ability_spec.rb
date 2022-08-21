@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Ability, type: :model do
   include ControllerHelpers
-  
+
   subject(:ability) { Ability.new(user) }
 
   describe 'for guest' do
@@ -31,7 +33,6 @@ describe Ability, type: :model do
       attach_file_to(question)
       attach_file_to(other_question)
     end
-
 
     it { should_not be_able_to :manage, :all }
     it { should be_able_to :read, :all }
