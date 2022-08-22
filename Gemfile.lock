@@ -1333,6 +1333,7 @@ GEM
       popper_js (>= 2.11.5, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    cancancan (3.4.0)
     capybara (3.37.1)
       addressable
       matrix
@@ -1625,6 +1626,7 @@ DEPENDENCIES
   aws-sdk
   bootsnap
   bootstrap
+  cancancan
   capybara
   capybara-email
   cocoon

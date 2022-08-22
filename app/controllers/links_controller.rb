@@ -5,6 +5,7 @@ class LinksController < ApplicationController
   before_action :find_link
 
   def destroy
+    authorize! :destroy, @link
     @link.destroy
   end
 

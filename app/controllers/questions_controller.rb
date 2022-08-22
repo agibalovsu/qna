@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
   before_action :current_user_to_gon, only: %i[index show]
   before_action :init_comment, only: %i[show update]
 
+  authorize_resource
+
   after_action :publish_question, only: :create
 
   def index
@@ -42,7 +44,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if current_user.present? && current_user.author?(question)
+    if current_user.present?
       @question.destroy
       redirect_to questions_path, notice: 'Question was successfully deleted'
     end
