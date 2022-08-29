@@ -31,10 +31,66 @@ describe 'Answers API', type: :request do
         expect(answers_response.size).to eq answers.size
       end
 
-      it 'returns all public fields' do
-        %w[id body created_at updated_at].each do |attr|
-          expect(answer_response[attr]).to eq answer.send(attr).as_json
+      it_behaves_like 'providable public fields' do
+        let(:fields_list) { %w[id body created_at updated_at] }
+        let(:object) { answer }
+        let(:object_response) { answer_response }
+      end
+    end
+  end
+
+  describe 'GET /api/v1/answers/:id' do
+    let(:api_path) { "/api/v1/answers/#{answer.id}" }
+
+    it_behaves_like 'API Authorizable' do
+      let(:method) { :get }
+    end
+
+    context 'authorized' do
+      include ControllerHelpers
+      
+      let!(:comments) { create_list(:comment, 3, commentable: answer, user: user) }
+      let!(:links) { create_list(:link, 3, linkable: answer) }
+      before { 3.times { attach_file_to(answer) } }
+
+      let(:object_response) { json['answer'] }
+
+      before { get api_path, params: { access_token: access_token.token }, headers: headers }
+
+      it_behaves_like 'response success'
+
+      it_behaves_like 'providable public fields' do
+        let(:fields_list) { %w[id body created_at updated_at] }
+        let(:object) { answer }
+        let(:object_response) { json['answer'] }
+      end
+
+      describe 'links' do
+        it_behaves_like 'providable public fields' do
+          let(:fields_list)     { %w[id name url created_at updated_at] }
+          let(:object)          { links.first }
+          let(:object_response) { json['answer']['links'].first }
         end
+
+        it 'returns list of links' do
+          expect(json['answer']['links'].size).to eq 3
+        end
+      end
+
+      describe 'comments' do
+        it_behaves_like 'providable public fields' do
+          let(:fields_list)     { %w[id body created_at updated_at] }
+          let(:object)          { comments.first }
+          let(:object_response) { json['answer']['comments'].first }
+        end
+
+        it 'returns list of links' do
+          expect(json['answer']['comments'].size).to eq 3
+        end
+      end
+      
+      it_behaves_like 'API files' do
+        let(:item) { answer }
       end
     end
   end
