@@ -136,4 +136,78 @@ describe 'Answers API', type: :request do
       end
     end
   end
+
+  describe 'PATCH /api/v1/answers/:id' do 
+    let(:api_path) { "/api/v1/answers/#{answer.id}" }
+
+    it_behaves_like 'API Authorizable' do 
+      let(:headers) { nil }
+      let(:method) { :patch }
+    end
+
+    context "authorized" do 
+      context "with valid attributes" do 
+        let(:send_request) { patch api_path, params: { id: answer, answer: { body: 'new body'}, question_id: question, access_token: access_token.token } }
+
+        it "assigns the requested question to @question" do 
+          send_request
+          expect(assigns(:answer)).to eq answer
+        end
+
+        it "changes question attributes" do 
+          send_request
+          answer.reload
+
+          expect(answer.body).to eq 'new body'
+        end
+
+        it "status success" do 
+          send_request
+          expect(response.status).to eq 200
+        end
+      end
+
+      context "with invalid attributes" do 
+        context "with valid attributes" do 
+          let(:send_bad_request) { patch api_path, params: { answer: attributes_for(:answer, :invalid), question_id: question, access_token: access_token.token } }
+
+          it 'does not update answer' do 
+            body = answer.body
+            send_bad_request
+            answer.reload
+
+            expect(answer.body).to eq body
+          end
+
+          it "does not create answer" do 
+            send_bad_request
+            expect(response.status).to eq 422
+          end
+        end
+      end
+    end
+  end
+
+  describe 'DELETE /api/v1/answers/:id' do
+    let(:api_path) { "/api/v1/answers/#{answer.id}" }
+
+    it_behaves_like 'API Authorizable' do
+      let(:headers) { nil }
+      let(:method) { :delete }
+    end
+
+    context 'authorized' do
+      context 'with valid attributes' do
+        let(:send_request) { delete api_path, params: { id: answer, question_id: question, access_token: access_token.token } }
+
+        it 'delete the answer' do
+          expect { send_request }.to change(Answer, :count).by(-1)
+        end
+        it 'status success' do
+          send_request
+          expect(response.status).to eq 204
+        end
+      end
+    end
+  end
 end

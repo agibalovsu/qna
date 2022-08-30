@@ -1,6 +1,6 @@
 class Api::V1::AnswersController < Api::V1::BaseController
 	before_action :find_question, only: %i[index create]
-	before_action :find_answer, only: %i[show]
+	before_action :find_answer, only: %i[show update destroy]
 
 	authorize_resource
 
@@ -21,6 +21,18 @@ class Api::V1::AnswersController < Api::V1::BaseController
 		else
 			render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
 		end
+	end
+
+	def update
+		if @answer.update(answer_params)
+			render json: @answer, serializer: AnswerShowSerializer
+		else
+			render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+		end
+	end
+
+	def destroy
+		@answer.destroy
 	end
 
 	private

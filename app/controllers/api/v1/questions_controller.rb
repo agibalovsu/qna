@@ -1,5 +1,5 @@
 class Api::V1::QuestionsController < Api::V1::BaseController
-	before_action :find_question, only: %i[show]
+	before_action :find_question, only: %i[show update destroy]
 
 	authorize_resource
 
@@ -20,6 +20,18 @@ class Api::V1::QuestionsController < Api::V1::BaseController
 		else
 			render json: { errors: @question.errors.full_messages }, status: :unprocessable_entity
 		end
+	end
+
+	def update
+		if @question.update(question_params)
+			render json: @question, serializer: QuestionShowSerializer
+		else
+			render json: { errors: @question.errors.full_messages }, status: :unprocessable_entity
+		end
+	end
+
+	def destroy
+		@question.destroy
 	end
 
 	private
