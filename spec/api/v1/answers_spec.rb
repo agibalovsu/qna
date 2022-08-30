@@ -94,4 +94,46 @@ describe 'Answers API', type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/questions/:id/answers' do 
+    let(:api_path) { "/api/v1/questions/#{question.id}/answers" }
+
+    it_behaves_like 'API Authorizable' do 
+      let(:headers) { nil }
+      let(:method) { :post }
+    end
+
+    context "authorized" do 
+
+      context "with valid attributes" do 
+        let(:send_request) { post api_path, params: { answer: attributes_for(:answer), question_id: question, access_token: access_token.token } }
+
+        it "save new answer" do 
+          expect { send_request }.to change(Answer, :count).by(1)
+        end
+
+        it "status success" do 
+          send_request
+          expect(response.status).to eq 200
+        end
+
+        it "answer has assocation with user" do 
+          send_request
+          expect(Answer.last.user_id).to eq access_token.resource_owner_id
+        end
+      end
+      context "with invalid attributes" do 
+        let(:send_bad_request) { post api_path, params: { answer: attributes_for(:answer, :invalid), question_id: question, access_token: access_token.token } }
+
+        it 'does not save question' do
+          expect { send_bad_request }.to_not change(Answer, :count)
+        end
+
+        it "does not create answer" do 
+          send_bad_request
+          expect(response.status).to eq 422
+        end
+      end
+    end
+  end
 end

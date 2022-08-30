@@ -1,5 +1,5 @@
 class Api::V1::AnswersController < Api::V1::BaseController
-	before_action :find_question, only: %i[index]
+	before_action :find_question, only: %i[index create]
 	before_action :find_answer, only: %i[show]
 
 	authorize_resource
@@ -10,6 +10,17 @@ class Api::V1::AnswersController < Api::V1::BaseController
 
 	def show
 		render json: @answer, serializer: AnswerShowSerializer
+	end
+
+	def create
+		@answer = @question.answers.new(answer_params)
+		@answer.user = current_resource_owner
+
+		if @answer.save
+			render json: @answer, serializer: AnswerShowSerializer
+		else
+			render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+		end
 	end
 
 	private

@@ -63,8 +63,16 @@ describe 'Questions API', type: :request do
         let(:object_response) { json['question'] }
       end
 
-      it_behaves_like 'API links' do
-        let(:item) { question }
+      describe 'links' do
+        it_behaves_like 'providable public fields' do
+          let(:fields_list)     { %w[id name url created_at updated_at] }
+          let(:object)          { links.first }
+          let(:object_response) { json['question']['links'].first }
+        end
+
+        it 'returns list of links' do
+          expect(json['question']['links'].size).to eq 3
+        end
       end
 
       describe 'comments' do
@@ -85,4 +93,45 @@ describe 'Questions API', type: :request do
     end
   end
 
+  describe 'POST /api/v1/questions' do 
+    let(:api_path) { '/api/v1/questions' }
+
+    it_behaves_like 'API Authorizable' do 
+      let(:headers) { nil }
+      let(:method) { :post }
+    end
+
+    context "authorized" do 
+
+      context "with valid attributes" do 
+        let(:send_request) { post api_path, params: { question: attributes_for(:question), access_token: access_token.token } }
+
+        it "save new question" do 
+          expect { send_request }.to change(Question, :count).by(1)
+        end
+
+        it "status success" do 
+          send_request
+          expect(response.status).to eq 200
+        end
+
+        it "question has assocation with user" do 
+          send_request
+          expect(Question.last.user_id).to eq access_token.resource_owner_id
+        end
+      end
+      context "with invalid attributes" do 
+        let(:send_bad_request) { post api_path, params: { question: attributes_for(:question, :invalid), access_token: access_token.token } }
+
+        it 'does not save question' do
+          expect { send_bad_request }.to_not change(Question, :count)
+        end
+
+        it "does not create question" do 
+          send_bad_request
+          expect(response.status).to eq 422
+        end
+      end
+    end
+  end
 end
