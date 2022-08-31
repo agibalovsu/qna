@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerShowSerializer < AnswerSerializer
   belongs_to :user
   belongs_to :question

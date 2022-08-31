@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Answers API', type: :request do
-  let(:headers) do
-    { 'CONTENT_TYPE' => 'application/json',
-      'ACCEPT' => 'application/json' }
-  end
+  let(:headers) { { 'ACCEPT' => 'application/json' } }
 
   let(:access_token) { create(:access_token) }
   let(:user) { User.find(access_token.resource_owner_id) }
@@ -48,7 +47,7 @@ describe 'Answers API', type: :request do
 
     context 'authorized' do
       include ControllerHelpers
-      
+
       let!(:comments) { create_list(:comment, 3, commentable: answer, user: user) }
       let!(:links) { create_list(:link, 3, linkable: answer) }
       before { 3.times { attach_file_to(answer) } }
@@ -88,48 +87,53 @@ describe 'Answers API', type: :request do
           expect(json['answer']['comments'].size).to eq 3
         end
       end
-      
+
       it_behaves_like 'API files' do
         let(:item) { answer }
       end
     end
   end
 
-  describe 'POST /api/v1/questions/:id/answers' do 
+  describe 'POST /api/v1/questions/:id/answers' do
     let(:api_path) { "/api/v1/questions/#{question.id}/answers" }
 
-    it_behaves_like 'API Authorizable' do 
-      let(:headers) { nil }
+    it_behaves_like 'API Authorizable' do
       let(:method) { :post }
     end
 
-    context "authorized" do 
+    context 'authorized' do
+      context 'with valid attributes' do
+        let(:send_request) do
+          post api_path,
+               params: { answer: attributes_for(:answer), question_id: question, access_token: access_token.token }
+        end
 
-      context "with valid attributes" do 
-        let(:send_request) { post api_path, params: { answer: attributes_for(:answer), question_id: question, access_token: access_token.token } }
-
-        it "save new answer" do 
+        it 'save new answer' do
           expect { send_request }.to change(Answer, :count).by(1)
         end
 
-        it "status success" do 
+        it 'status success' do
           send_request
           expect(response.status).to eq 200
         end
 
-        it "answer has assocation with user" do 
+        it 'answer has assocation with user' do
           send_request
           expect(Answer.last.user_id).to eq access_token.resource_owner_id
         end
       end
-      context "with invalid attributes" do 
-        let(:send_bad_request) { post api_path, params: { answer: attributes_for(:answer, :invalid), question_id: question, access_token: access_token.token } }
+      context 'with invalid attributes' do
+        let(:send_bad_request) do
+          post api_path,
+               params: { answer: attributes_for(:answer, :invalid), question_id: question,
+                         access_token: access_token.token }
+        end
 
         it 'does not save question' do
           expect { send_bad_request }.to_not change(Answer, :count)
         end
 
-        it "does not create answer" do 
+        it 'does not create answer' do
           send_bad_request
           expect(response.status).to eq 422
         end
@@ -137,41 +141,48 @@ describe 'Answers API', type: :request do
     end
   end
 
-  describe 'PATCH /api/v1/answers/:id' do 
+  describe 'PATCH /api/v1/answers/:id' do
     let(:api_path) { "/api/v1/answers/#{answer.id}" }
 
-    it_behaves_like 'API Authorizable' do 
-      let(:headers) { nil }
+    it_behaves_like 'API Authorizable' do
       let(:method) { :patch }
     end
 
-    context "authorized" do 
-      context "with valid attributes" do 
-        let(:send_request) { patch api_path, params: { id: answer, answer: { body: 'new body'}, question_id: question, access_token: access_token.token } }
+    context 'authorized' do
+      context 'with valid attributes' do
+        let(:send_request) do
+          patch api_path,
+                params: { id: answer, answer: { body: 'new body' }, question_id: question,
+                          access_token: access_token.token }
+        end
 
-        it "assigns the requested question to @question" do 
+        it 'assigns the requested question to @question' do
           send_request
           expect(assigns(:answer)).to eq answer
         end
 
-        it "changes question attributes" do 
+        it 'changes question attributes' do
           send_request
           answer.reload
 
           expect(answer.body).to eq 'new body'
         end
 
-        it "status success" do 
+        it 'status success' do
           send_request
           expect(response.status).to eq 200
         end
       end
 
-      context "with invalid attributes" do 
-        context "with valid attributes" do 
-          let(:send_bad_request) { patch api_path, params: { answer: attributes_for(:answer, :invalid), question_id: question, access_token: access_token.token } }
+      context 'with invalid attributes' do
+        context 'with valid attributes' do
+          let(:send_bad_request) do
+            patch api_path,
+                  params: { answer: attributes_for(:answer, :invalid), question_id: question,
+                            access_token: access_token.token }
+          end
 
-          it 'does not update answer' do 
+          it 'does not update answer' do
             body = answer.body
             send_bad_request
             answer.reload
@@ -179,7 +190,7 @@ describe 'Answers API', type: :request do
             expect(answer.body).to eq body
           end
 
-          it "does not create answer" do 
+          it 'does not create answer' do
             send_bad_request
             expect(response.status).to eq 422
           end
@@ -192,13 +203,14 @@ describe 'Answers API', type: :request do
     let(:api_path) { "/api/v1/answers/#{answer.id}" }
 
     it_behaves_like 'API Authorizable' do
-      let(:headers) { nil }
       let(:method) { :delete }
     end
 
     context 'authorized' do
       context 'with valid attributes' do
-        let(:send_request) { delete api_path, params: { id: answer, question_id: question, access_token: access_token.token } }
+        let(:send_request) do
+          delete api_path, params: { id: answer, question_id: question, access_token: access_token.token }
+        end
 
         it 'delete the answer' do
           expect { send_request }.to change(Answer, :count).by(-1)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'providable public fields' do
   it 'returns all public fields' do
     fields_list.each do |attr|

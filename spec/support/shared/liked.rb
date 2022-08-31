@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.shared_examples 'liked' do
+shared_examples_for 'liked' do
   let(:liker) { create(:user) }
   let(:author) { create(:user) }
   let(:model) { described_class.controller_name.classify.constantize }

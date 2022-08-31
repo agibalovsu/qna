@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Profiles API', type: :request do
-  let(:headers) {  { "CONTENT_TYPE" => "application/json",
-                     "ACCEPT" => 'application/json' } }
+  let(:headers) do
+    { 'CONTENT_TYPE' => 'application/json',
+      'ACCEPT' => 'application/json' }
+  end
 
   describe 'GET /api/v1/profiles/me' do
     it_behaves_like 'API Authorizable' do
       let(:method) { :get }
       let(:api_path) { '/api/v1/profiles/me' }
     end
-    
+
     context 'authorized' do
       let(:me) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: me.id) }
@@ -36,7 +40,7 @@ describe 'Profiles API', type: :request do
     let(:api_path) { '/api/v1/profiles' }
 
     it_behaves_like 'API Authorizable' do
-      let(:method) { :get }  
+      let(:method) { :get }
     end
 
     context 'authorized' do
@@ -48,8 +52,8 @@ describe 'Profiles API', type: :request do
 
       it_behaves_like 'response success'
 
-      it 'it returns all users, without authenticated user' do 
-        expect(json['users'].size).to eq(users.size - 1) 
+      it 'it returns all users, without authenticated user' do
+        expect(json['users'].size).to eq(users.size - 1)
       end
     end
   end

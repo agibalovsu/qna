@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'API files' do
   include Rails.application.routes.url_helpers
 

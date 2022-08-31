@@ -1,51 +1,57 @@
-class Api::V1::AnswersController < Api::V1::BaseController
-	before_action :find_question, only: %i[index create]
-	before_action :find_answer, only: %i[show update destroy]
+# frozen_string_literal: true
 
-	authorize_resource
+module Api
+  module V1
+    class AnswersController < Api::V1::BaseController
+      before_action :find_question, only: %i[index create]
+      before_action :find_answer, only: %i[show update destroy]
 
-	def index
-		render json: @question.answers
-	end
+      authorize_resource
 
-	def show
-		render json: @answer, serializer: AnswerShowSerializer
-	end
+      def index
+        render json: @question.answers
+      end
 
-	def create
-		@answer = @question.answers.new(answer_params)
-		@answer.user = current_resource_owner
+      def show
+        render json: @answer, serializer: AnswerShowSerializer
+      end
 
-		if @answer.save
-			render json: @answer, serializer: AnswerShowSerializer
-		else
-			render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
-		end
-	end
+      def create
+        @answer = @question.answers.new(answer_params)
+        @answer.user = current_resource_owner
 
-	def update
-		if @answer.update(answer_params)
-			render json: @answer, serializer: AnswerShowSerializer
-		else
-			render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
-		end
-	end
+        if @answer.save
+          render json: @answer, serializer: AnswerShowSerializer
+        else
+          render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
 
-	def destroy
-		@answer.destroy
-	end
+      def update
+        if @answer.update(answer_params)
+          render json: @answer, serializer: AnswerShowSerializer
+        else
+          render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
 
-	private
+      def destroy
+        @answer.destroy
+      end
 
-	def find_question
-		@question = Question.find(params[:question_id])
-	end
+      private
 
-	def find_answer
-		@answer = Answer.find(params[:id])
-	end
+      def find_question
+        @question = Question.find(params[:question_id])
+      end
 
-	def answer_params
-		params.require(:answer).permit(:body)
-	end	
+      def find_answer
+        @answer = Answer.find(params[:id])
+      end
+
+      def answer_params
+        params.require(:answer).permit(:body)
+      end
+    end
+  end
 end

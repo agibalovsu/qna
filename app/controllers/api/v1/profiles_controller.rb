@@ -1,17 +1,23 @@
-class Api::V1::ProfilesController < Api::V1::BaseController
-	authorize_resource class: User
-	
-	def index
-		render json: users_without_authenticated_user, each_serializer: ProfileSerializer
-	end
+# frozen_string_literal: true
 
-	def me
-		render json: current_resource_owner, serializer: ProfileSerializer
-	end
+module Api
+  module V1
+    class ProfilesController < Api::V1::BaseController
+      authorize_resource class: User
 
-	private
+      def index
+        render json: users_without_authenticated_user, each_serializer: ProfileSerializer
+      end
 
-	def users_without_authenticated_user
-		@users ||= User.where.not(id: doorkeeper_token.resource_owner_id) if doorkeeper_token
-	end
+      def me
+        render json: current_resource_owner, serializer: ProfileSerializer
+      end
+
+      private
+
+      def users_without_authenticated_user
+        @users ||= User.where.not(id: doorkeeper_token.resource_owner_id) if doorkeeper_token
+      end
+    end
+  end
 end

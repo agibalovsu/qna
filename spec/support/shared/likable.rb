@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.shared_examples_for 'likable' do
+shared_examples_for 'likable' do
   let(:model) { described_class }
   let(:author) { create(:user) }
   let(:likers) { create_list(:user, 5) }

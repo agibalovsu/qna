@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks', registrations: 'oauth_registrations' }
@@ -5,15 +7,15 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :profiles, only: %i[index] do
-        get :me, on: :collection
+        get :me,  on: :collection
       end
 
-      resources :questions, shallow: true, except: %i[new] do
-        resources :answers, except: %i[new]
+      resources :questions, only: %i[index show create update destroy], shallow: true do
+        resources :answers, only: %i[index show create update destroy]
       end
     end
   end
-  
+
   concern :likable do
     member do
       post :like_up, :like_down
