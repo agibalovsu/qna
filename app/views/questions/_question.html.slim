@@ -6,7 +6,7 @@ div class = "question-#{question.id}"
   p = question.body
 
   = render 'links/link', resource: question
-
+  
   = render 'shared/vote', resource: question
 
   .comments

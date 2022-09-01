@@ -6,8 +6,9 @@ div class = "answer-#{answer.id}"
     p = answer.body
   
   = render 'links/link', resource: answer 
-
-  = render 'shared/vote', resource: answer 
+  
+  .answer_vote
+    = render 'shared/vote', resource: answer 
 
   .comments
     - if can?(:create, Comment)

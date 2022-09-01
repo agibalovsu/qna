@@ -6,7 +6,7 @@ module Api
       before_action :find_question, only: %i[index create]
       before_action :find_answer, only: %i[show update destroy]
 
-      authorize_resource
+      authorize_resource class: Answer
 
       def index
         render json: @question.answers
