@@ -9,6 +9,10 @@ div class = "question-#{question.id}"
   
   = render 'shared/vote', resource: question
 
+  .subscription
+    -if can?(:create, Subscription)
+      = render 'subscriptions/subscription', question: @question
+
   .comments
     - if can?(:create, Comment)
       = link_to 'New comment', '#', class: 'new-comment-link', remote: true, data: { klass: question.class.to_s.downcase, id: question.id }

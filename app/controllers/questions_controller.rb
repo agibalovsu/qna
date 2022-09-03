@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   before_action :question, only: %i[show destroy update]
   before_action :current_user_to_gon, only: %i[index show]
   before_action :init_comment, only: %i[show update]
+  before_action :set_subscription, only: %i[show update]
 
   authorize_resource
 
@@ -78,5 +79,9 @@ class QuestionsController < ApplicationController
 
   def init_comment
     @comment = Comment.new
+  end
+
+  def set_subscription
+    @subscription ||= current_user&.subscriptions&.find_by(question: question)
   end
 end

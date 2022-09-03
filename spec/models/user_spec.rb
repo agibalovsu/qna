@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   it { should have_many :questions }
   it { should have_many :answers }
   it { should have_many(:authorizations).dependent(:destroy) }
+  it { should have_many(:subscriptions).dependent(:destroy) }
 
   it { should validate_presence_of :email }
   it { should validate_presence_of :password }
@@ -68,4 +69,22 @@ RSpec.describe User, type: :model do
       expect(result.password_confirmation).to_not eq ''
     end
   end
+
+  describe '#subscribed?' do 
+    let!(:user) { create(:user) }
+    let!(:question) { create(:question, user: user) }
+    let!(:subscriprion) { create(:subscription, question: question, user: user) }
+    let!(:another_user) { create(:user) }
+
+    context 'true if subscribed to question' do 
+      it { expect(user).to be_subscribed(question) }
+    end
+
+    context 'false if if not author of object' do 
+      it { expect(another_user).to_not be_subscribed(question) }
+    end
+  end
 end
+
+
+   

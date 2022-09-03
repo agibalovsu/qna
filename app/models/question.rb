@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 
   has_many :answers, dependent: :destroy
   has_many :links, dependent: :destroy, as: :linkable
+  has_many :subscriptions, dependent: :destroy
 
   has_one :badge, dependent: :destroy
 
@@ -17,4 +18,12 @@ class Question < ApplicationRecord
   has_many_attached :files
 
   validates :title, :body, presence: true
+
+  after_create :subscribe_author
+
+  private
+
+  def subscribe_author
+    subscriptions.create!(user_id: user.id)
+  end
 end
