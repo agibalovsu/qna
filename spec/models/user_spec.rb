@@ -70,21 +70,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#subscribed?' do 
+  describe '#subscribed?' do
     let!(:user) { create(:user) }
     let!(:question) { create(:question, user: user) }
     let!(:subscriprion) { create(:subscription, question: question, user: user) }
     let!(:another_user) { create(:user) }
 
-    context 'true if subscribed to question' do 
+    context 'true if subscribed to question' do
       it { expect(user).to be_subscribed(question) }
     end
 
-    context 'false if if not author of object' do 
+    context 'false if if not author of object' do
       it { expect(another_user).to_not be_subscribed(question) }
     end
   end
 end
-
-
-   

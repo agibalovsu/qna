@@ -2,55 +2,28 @@
 
 require 'rails_helper'
 
-feature 'User can add comments to question' do
-  given!(:user) { create(:user) }
-  given!(:question) { create(:question, user: user) }
+feature 'User can add comments to question', "
+  In order to update or suppliment the information question
+  As an authenticated user
+  I'd like to be able to add comments
+" do
+  given(:user)     { create(:user) }
+  given(:question) { create(:question, user: user) }
 
-  describe 'Authenticated user', js: true do
-    background do
-      sign_in(user)
-      visit question_path(question)
-    end
+  scenario 'User adds comment to question', js: true do
+    sign_in(user)
+    visit question_path(question)
 
-    scenario 'visible a new comment link' do
-      expect(page).to have_link 'New comment'
-    end
+    click_on 'New comment'
+    fill_in 'comment_body', with: 'My new comment'
+    click_on 'Add comment'
 
-    scenario 'add new comment to question' do
-      click_on 'New comment'
-      expect(page).to_not have_link 'New comment'
-
-      fill_in 'Comment', with: 'Test comment'
-      click_on 'Add comment'
-
-      expect(page).to have_content 'Test comment'
-      expect(page).to have_link 'New comment'
-    end
+    expect(page).to have_content 'My new comment'
   end
 
-  context 'mulitple sessions', js: true do
-    scenario "question appears on another user's page" do
-      Capybara.using_session('second_user') do
-        second_user = create(:user)
+  scenario 'Guest tries to add comment to question', js: true do
+    visit question_path(question)
 
-        sign_in(second_user)
-        visit question_path(question)
-      end
-
-      Capybara.using_session('user') do
-        sign_in(user)
-        visit question_path(question)
-
-        click_on 'New comment'
-        fill_in 'Comment', with: 'Test comment'
-        click_on 'Add comment'
-
-        expect(page).to have_content 'Test comment'
-      end
-
-      Capybara.using_session('second_user') do
-        expect(page).to have_content 'Test comment'
-      end
-    end
+    expect(page).to_not have_link 'Add comment'
   end
 end
