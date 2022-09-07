@@ -5,7 +5,7 @@ require 'rails_helper'
 feature 'User can remove his answer links', "
   In order to correct mistakes
   As an author of answer
-  I'd like ot be remove my answer links
+  I'd like be remove my answer links
 " do
   given(:author) { create(:user) }
   given(:user) { create(:user) }

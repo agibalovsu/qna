@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :like do
-    value { 1 }
+  factory :subscription do
     user
-    likable factory: :question
+    question
   end
 end

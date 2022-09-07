@@ -2,61 +2,70 @@
 
 require 'rails_helper'
 
-feature 'User can vote for a question', "
-  In order to show that question is good
+feature 'User can vote for question', "
+  In order to encourage best question
   As an authenticated user
-  I'd like to be able to set 'like' for question.
+  I'd like to be able to vote for question
 " do
-  given(:liker) { create(:user) }
-  given(:author) { create(:user) }
-  given(:question) { create(:question, user: author) }
+  given(:user)       { create(:user) }
+  given(:author)     { create(:user) }
+  given!(:question)  { create(:question, user: author) }
 
   describe 'Authenticated user', js: true do
-    
     background do
-      sign_in(liker) 
-      visit question_path(question) 
+      sign_in(user)
+      visit question_path(question)
     end
 
-    scenario 'can vote up' do
-      within '.rate ' do
-        click_on 'like +'
+    scenario 'change question rating by voting' do
+      within("vote-question-#{question.id}") { click_on 'like +' }
+
+      within("rate-question-#{question.id}") do
         expect(page).to have_content '1'
       end
     end
 
-    scenario 'can vote down' do
-      within '.rate' do
-        click_on 'dislike -'
+    scenario 'change question rating by voting' do
+      within(".vote-question-#{question.id}") do
+        click_on 'like +'
+        click_on 'revoke'
+      end
+      within(".rate-question-#{question.id}") do
+        expect(page).to have_content '0'
+      end
+    end
+    scenario 'change question rating by voting' do
+      within(".vote-question-#{question.id}") { click_on 'dislike -' }
+      within(".rate-question-#{question.id}") do
         expect(page).to have_content '-1'
       end
     end
+  end
 
-    scenario 'can vote only once' do
-      within '.rate' do
-        click_on 'like +'
-        expect(page).to_not have_link 'like +'
-        expect(page).to_not have_link 'dislike -'
-      end
-    end
-
-    scenario 'can revote' do
-      within '.rate' do
-        click_on 'like +'
-        expect(page).to have_link 'revoke'
-
-        click_on 'revoke'
-        expect(page).to have_content '0'
-        expect(page).to_not have_link 'revoke'
-      end
-    end
-
-    scenario "can't vote for self question" do
-      click_on 'Log out'
+  describe 'Authenticated author', js: true do
+    background do
       sign_in(author)
+      visit question_path(question)
+    end
 
-      expect(page).to_not have_link 'like +'
-      expect(page).to_not have_link 'dislike -'
+    scenario 'cant change question rating by voting' do
+      expect(page).to_not have_css ".vote-#{question.id}"
+      within(".rate-question-#{question.id}") do
+        expect(page).to have_content '0'
+      end
+    end
+  end
+
+  describe 'Unauthenticated user', js: true do
+    background do
+      visit question_path(question)
+    end
+
+    scenario 'cant change question rating by voting' do
+      expect(page).to_not have_css ".vote-#{question.id}"
+      within(".rate-question-#{question.id}") do
+        expect(page).to have_content '0'
+      end
     end
   end
 end

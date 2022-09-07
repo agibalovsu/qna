@@ -22,6 +22,8 @@ class Answer < ApplicationRecord
 
   scope :best, -> { where(best: true) }
 
+  after_commit :send_subscriptions, on: :create
+
   def best!
     transaction do
       question.answers.best.update_all(best: false)
@@ -32,5 +34,11 @@ class Answer < ApplicationRecord
 
   def best_count
     errors.add(:answer, 'only one answer can be the best') if question.answers.best.count > MAX_BEST_ANSWERS_COUNT
+  end
+
+  private
+
+  def send_subscriptions
+    SubscriptionsJob.perform_later(self)
   end
 end

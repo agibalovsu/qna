@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :answers
   has_many :badges
   has_many :likes
+  has_many :subscriptions, dependent: :destroy
   has_many :authorizations, dependent: :destroy
 
   # Include default devise modules. Others available are:
@@ -41,5 +42,9 @@ class User < ApplicationRecord
         user.password_confirmation = password
       end
     end
+  end
+
+  def subscribed?(question)
+    subscriptions.where(question_id: question.id).any?
   end
 end
