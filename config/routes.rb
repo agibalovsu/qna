@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   root to: 'questions#index'
 
+  get :search, to: 'searches#search'
+
   resources :attachments, only: :destroy
   resources :links, only: :destroy
   resources :badges, only: :index

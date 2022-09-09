@@ -1,0 +1,11 @@
+h2 Search result
+
+.search-results
+	- if @resource == 'all'
+		- @search_result.each do |result|
+			= render "searches/#{result.class.to_s.downcase}", resource: result
+	- else
+		- @search_result.each do |result| 
+		  = render "searches/#{@resource}", resource: result
+
+		  
