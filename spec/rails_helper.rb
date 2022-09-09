@@ -7,7 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-#require 'database_cleaner/active_record'
+# require 'database_cleaner/active_record'
 require 'cancan/matchers'
 
 # Prevent database truncation if the environment is production

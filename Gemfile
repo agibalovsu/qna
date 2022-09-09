@@ -64,6 +64,7 @@ gem 'handlebars'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jsbundling-rails', '~> 1.0'
+gem 'mysql2'
 gem 'octokit', '~> 4.0'
 gem 'oj'
 gem 'omniauth'
@@ -73,9 +74,8 @@ gem 'omniauth-vkontakte'
 gem 'rails-ujs'
 gem 'sidekiq'
 gem 'sinatra', require: false
-gem 'whenever', require: false
-gem 'mysql2'
 gem 'thinking-sphinx'
+gem 'whenever', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

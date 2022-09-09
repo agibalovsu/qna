@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'sphinx_helper'
 
-shared_examples_for "searchable", sphinx: true do
+shared_examples_for 'searchable', sphinx: true do
   background { visit questions_path }
 
   scenario 'fill form and match result' do
@@ -25,13 +27,13 @@ feature 'User can search for information', "
   given!(:comment)  { create(:comment, body: 'test 789', commentable: answer, user: user) }
 
   context 'search from questions', sphinx: true do
-    it_should_behave_like "searchable" do
+    it_should_behave_like 'searchable' do
       let(:resource_name)   { 'question' }
       let(:searching_param) { question.title }
       let(:expecting_result) { question.title }
     end
 
-    it_should_behave_like "searchable" do
+    it_should_behave_like 'searchable' do
       let(:resource_name)   { 'question' }
       let(:searching_param) { question.body }
       let(:expecting_result) { question.title }
@@ -39,7 +41,7 @@ feature 'User can search for information', "
   end
 
   context 'search from answers', sphinx: true do
-    it_should_behave_like "searchable" do
+    it_should_behave_like 'searchable' do
       let(:resource_name)   { 'answer' }
       let(:searching_param) { answer.body }
       let(:expecting_result) { answer.body }
@@ -47,7 +49,7 @@ feature 'User can search for information', "
   end
 
   context 'search from comments', sphinx: true do
-    it_should_behave_like "searchable" do
+    it_should_behave_like 'searchable' do
       let(:resource_name)   { 'comment' }
       let(:searching_param) { comment.body }
       let(:expecting_result) { comment.body }
@@ -55,7 +57,7 @@ feature 'User can search for information', "
   end
 
   context 'search from users', sphinx: true do
-    it_should_behave_like "searchable" do
+    it_should_behave_like 'searchable' do
       let(:resource_name)   { 'user' }
       let(:searching_param) { 'test' }
       let(:expecting_result) { user.email }
