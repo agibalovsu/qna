@@ -9,7 +9,7 @@ shared_examples_for 'searchable', sphinx: true do
     ThinkingSphinx::Test.run do
       fill_in 'query', with: searching_param
       select resource_name, from: 'resource'
-      click_on 'Find'
+      click_on 'Find!'
 
       expect(page).to have_content expecting_result
     end
@@ -71,7 +71,7 @@ feature 'User can search for information', "
       ThinkingSphinx::Test.run do
         fill_in 'query', with: 'test'
         select 'all', from: 'resource'
-        click_on 'Find'
+        click_on 'Find!'
 
         expect(page).to have_content('test').exactly(3).times
       end
