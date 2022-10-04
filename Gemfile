@@ -64,6 +64,7 @@ gem 'handlebars'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jsbundling-rails', '~> 1.0'
+gem 'mysql2'
 gem 'octokit', '~> 4.0'
 gem 'oj'
 gem 'omniauth'
@@ -73,6 +74,7 @@ gem 'omniauth-vkontakte'
 gem 'rails-ujs'
 gem 'sidekiq'
 gem 'sinatra', require: false
+gem 'thinking-sphinx'
 gem 'whenever', require: false
 
 group :development, :test do
