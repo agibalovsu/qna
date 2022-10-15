@@ -48,7 +48,7 @@ gem 'bootsnap', require: false
 gem 'slim-rails'
 
 # Use Sass to process CSS
-# gem 'sassc-rails'
+gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -85,6 +85,7 @@ gem 'actioncable', '~> 7.0.3.1'
 gem 'actionmailbox', '~> 7.0.3.1'
 gem 'actiontext', '~> 7.0.3.1'
 gem 'sassc', '~> 2.4.0'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
