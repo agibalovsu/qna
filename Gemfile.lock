@@ -1728,6 +1728,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.3)
   rails-controller-testing
   rails-dom-testing (~> 2.0.3)
+  rails-html-sanitizer (~> 1.4.3)
   rails-ujs
   rspec-rails (~> 4.0)
   sassc-rails
