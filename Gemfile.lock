@@ -1736,6 +1736,7 @@ DEPENDENCIES
   rails-html-sanitizer (~> 1.4.3)
   rails-ujs
   rspec-rails (~> 4.0)
+  sassc (~> 2.4.0)
   sassc-rails
   selenium-webdriver
   shoulda-matchers

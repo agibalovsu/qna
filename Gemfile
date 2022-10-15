@@ -84,6 +84,7 @@ gem 'actionpack', '~> 7.0.3.1'
 gem 'actioncable', '~> 7.0.3.1'
 gem 'actionmailbox', '~> 7.0.3.1'
 gem 'actiontext', '~> 7.0.3.1'
+gem 'sassc', '~> 2.4.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
