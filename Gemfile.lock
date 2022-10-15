@@ -1737,7 +1737,6 @@ DEPENDENCIES
   rails-ujs
   rspec-rails (~> 4.0)
   sassc (~> 2.4.0)
-  sassc-rails
   selenium-webdriver
   shoulda-matchers
   sidekiq
