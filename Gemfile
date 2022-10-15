@@ -81,6 +81,7 @@ gem 'rails-dom-testing', '~> 2.0.3'
 gem 'rails-html-sanitizer', '~> 1.4.3'
 gem 'actionview', '~> 7.0.3.1'
 gem 'actionpack', '~> 7.0.3.1'
+gem 'actioncable', '~> 7.0.3.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
