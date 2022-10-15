@@ -1687,6 +1687,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
+  activesupport (~> 7.0.3.1)
   aws-sdk
   bootsnap
   bootstrap
@@ -1726,6 +1727,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
   rails-controller-testing
+  rails-dom-testing (~> 2.0.3)
   rails-ujs
   rspec-rails (~> 4.0)
   sassc-rails
