@@ -1460,6 +1460,8 @@ GEM
     method_source (1.0.0)
     middleware (0.1.0)
     mini_mime (1.1.2)
+    mini_racer (0.6.3)
+      libv8-node (~> 16.10.0.0)
     minitest (5.16.2)
     msgpack (1.5.4)
     multi_json (1.15.0)
@@ -1721,7 +1723,7 @@ DEPENDENCIES
   jsbundling-rails (~> 1.0)
   launchy
   letter_opener
-  libv8-node (~> 16.10.0.0)
+  mini_racer
   mysql2
   net-http
   octokit (~> 4.0)
