@@ -1723,7 +1723,7 @@ DEPENDENCIES
   jsbundling-rails (~> 1.0)
   launchy
   letter_opener
-  libv8-node (~> 16.10.0.0)
+  libv8-node (~> 16.10)
   mini_racer
   mysql2
   net-http
