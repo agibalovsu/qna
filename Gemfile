@@ -85,7 +85,7 @@ gem 'actioncable', '~> 7.0.3.1'
 gem 'actionmailbox', '~> 7.0.3.1'
 gem 'actiontext', '~> 7.0.3.1'
 gem 'sassc', '~> 2.1.0'
-gem 'mini_racer'
+# gem 'mini_racer'
 gem 'libv8-node', '~> 16.10.0.0'
 
 group :development, :test do
