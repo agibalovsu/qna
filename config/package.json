@@ -1,13 +1,10 @@
 {
-  "dependencies": {
+    "name": "qna",
+    "version": "0.1.0",
+    "scripts": {
+       "build": "webpack --config webpack.dev.js"
+    },
+    "dependencies": {
     "jquery": "1.12.4"
-  }
-
-  "name": "my-package",
-  "scripts": {
-    "build": "babel src -d lib",
-    "test": "jest"
-  }
+    }
 }
-
-  
