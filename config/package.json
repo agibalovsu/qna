@@ -2,4 +2,12 @@
   "dependencies": {
     "jquery": "1.12.4"
   }
+
+  "name": "my-package",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "jest"
+  }
 }
+
+  
