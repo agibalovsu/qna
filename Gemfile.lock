@@ -1768,6 +1768,7 @@ DEPENDENCIES
   slim-rails
   sprockets-rails
   stimulus-rails
+  therubyracer
   thinking-sphinx
   turbo-rails
   tzinfo-data
