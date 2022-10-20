@@ -125,3 +125,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webdrivers'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
