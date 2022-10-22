@@ -4,6 +4,18 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_uri_options = { host: "81.163.26.246", protocol: "https"}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:         'smtp.gmail.com',
+    port:            587,
+    domain:          '81.163.26.246',
+    user_name:       Rails.application.credentials[:google_smtp][:email],
+    password:        Rails.application.credentials[:google_smtp][:password],
+    authentication:  'plain',
+    enable_starttls: true }
+
 
   # Code is not reloaded between requests.
   config.cache_classes = true
