@@ -4,7 +4,7 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_uri_options = { host: "81.163.26.246", protocol: "http"}
+  config.action_mailer.default_uri_options = { host: "81.163.26.246", protocol: "https"}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -57,7 +57,7 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
-  config.action_cable.allowed_request_origins = [ "http://81.163.26.246" ]
+  config.action_cable.allowed_request_origins = [ "https://81.163.26.246" ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -76,7 +76,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "qna_production"
 
-  config.action_mailer.perform_caching = false
+  #config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
