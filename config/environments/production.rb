@@ -14,8 +14,7 @@ Rails.application.configure do
     user_name:       Rails.application.credentials[:google_smtp][:email],
     password:        Rails.application.credentials[:google_smtp][:password],
     authentication:  'plain',
-    enable_starttls: true, 
-    tls: true }
+    enable_starttls: true }
 
 
   # Code is not reloaded between requests.
