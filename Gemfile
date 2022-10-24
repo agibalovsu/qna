@@ -87,6 +87,7 @@ gem 'actiontext', '~> 7.0.3.1'
 gem 'sassc', '~> 2.1.0'
 gem 'libv8-node', '~> 16.10.0.0'
 gem 'mini_racer'
+gem 'unicorn'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -107,6 +108,7 @@ group :development do
   gem 'capistrano-rvm', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-sidekiq', require: false
+  gem 'capistrano3-unicorn', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
