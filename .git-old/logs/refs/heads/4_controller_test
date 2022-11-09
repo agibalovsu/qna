@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 22c97a2bb74bc645bf483cdd165764e05e336782 agibalovsu <agibalovsu@mail.ru> 1651006215 +0300	branch: Created from HEAD
+22c97a2bb74bc645bf483cdd165764e05e336782 71155bb269f6562f449d86580500c520e828e695 agibalovsu <agibalovsu@mail.ru> 1652389043 +0300	commit: Remove before_action for load question
+71155bb269f6562f449d86580500c520e828e695 6a5971849bcd0a5ce7d6fca290312987cd1db03e agibalovsu <agibalovsu@mail.ru> 1654115943 +0300	commit: add test for answerscontroller
+6a5971849bcd0a5ce7d6fca290312987cd1db03e 26488c0bf99e91b6403782a0add6776ef60eaff8 agibalovsu <agibalovsu@mail.ru> 1654116246 +0300	commit: change wrong test to model answer
+26488c0bf99e91b6403782a0add6776ef60eaff8 d2efd2da79b1a4a92dbf7728f0875bd85a3644bb agibalovsu <agibalovsu@mail.ru> 1654374604 +0300	commit: change with rubocop
+d2efd2da79b1a4a92dbf7728f0875bd85a3644bb fac918610e8f47a1ed9ff92cbabbcab221eab5e0 agibalovsu <agibalovsu@mail.ru> 1654375113 +0300	commit: add changes with rubocop to spec

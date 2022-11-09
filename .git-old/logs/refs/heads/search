@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 5e1fa06be1c33d88feb0d32e26ea979229b050a6 agibalovsu <agibalovsu@mail.ru> 1662534535 +0300	branch: Created from HEAD
+5e1fa06be1c33d88feb0d32e26ea979229b050a6 21ef23821bcb3441658bed35d59d623024d8f8c7 agibalovsu <agibalovsu@mail.ru> 1662730757 +0300	commit: add search with sphinx
+21ef23821bcb3441658bed35d59d623024d8f8c7 0cdc4b73d09bc349a006b959f150f9410628c3bd agibalovsu <agibalovsu@mail.ru> 1662730934 +0300	commit: correct with rubocop
+0cdc4b73d09bc349a006b959f150f9410628c3bd 74b451322ac274eb5e0193602af649c79e0a88e6 agibalovsu <agibalovsu@mail.ru> 1664918433 +0300	commit: add last changes
