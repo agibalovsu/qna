@@ -1,8 +1,0 @@
-0000000000000000000000000000000000000000 a0a44387eef8f22e31bc5c27645f0c73190f5d60 agibalovsu <agibalovsu@mail.ru> 1661160714 +0300	branch: Created from HEAD
-a0a44387eef8f22e31bc5c27645f0c73190f5d60 528cf1ae168e6b064937079aba5dafae155aa317 agibalovsu <agibalovsu@mail.ru> 1661505723 +0300	commit: add screencast code
-528cf1ae168e6b064937079aba5dafae155aa317 79dae9182e624704609df72c27014c03f99b15b0 agibalovsu <agibalovsu@mail.ru> 1661716745 +0300	commit: add list users without authenticated user
-79dae9182e624704609df72c27014c03f99b15b0 6451c7071424ca8cd358200835ba77329d9481d9 agibalovsu <agibalovsu@mail.ru> 1661806658 +0300	commit: add question and answer show
-6451c7071424ca8cd358200835ba77329d9481d9 2b429a646d63dd02d04ab012885b6c0d74fd0796 agibalovsu <agibalovsu@mail.ru> 1661865907 +0300	commit: add answer, question create
-2b429a646d63dd02d04ab012885b6c0d74fd0796 35ee2b02c16c26581c154fe59238c56f2bcbfc76 agibalovsu <agibalovsu@mail.ru> 1661894050 +0300	commit: add update and destroy answer and question
-35ee2b02c16c26581c154fe59238c56f2bcbfc76 c040884419ba835b405fb7356d2e6bf19c8ab8cc agibalovsu <agibalovsu@mail.ru> 1661941877 +0300	commit: fix mistake, add liked and likable to shared use rubocop
-c040884419ba835b405fb7356d2e6bf19c8ab8cc bbe3d16e23607289ef0ed91ba739cefa08b77463 agibalovsu <agibalovsu@mail.ru> 1662063319 +0300	commit: add change to spec vote and api authorization

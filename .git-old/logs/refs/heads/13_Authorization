@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 1c0dec607bb6a0a98b3a87f41efe894a11a951a9 agibalovsu <agibalovsu@mail.ru> 1660852512 +0300	branch: Created from HEAD
-1c0dec607bb6a0a98b3a87f41efe894a11a951a9 e5c0c1243a5b52c360acbc97dc0a4430e77a859d agibalovsu <agibalovsu@mail.ru> 1660942386 +0300	commit: 13_code from screencast + model ability and spec
-e5c0c1243a5b52c360acbc97dc0a4430e77a859d 31ed4f3c94d2ba9e73f7e71d58a888ca20fbc7f2 agibalovsu <agibalovsu@mail.ru> 1661105823 +0300	commit: add changes with cancancan and fix with rubocop

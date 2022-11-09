@@ -1,5 +1,0 @@
-0000000000000000000000000000000000000000 b573dab6f6bc97586587e703a25745d39def9b8d agibalovsu <agibalovsu@mail.ru> 1659895161 +0300	branch: Created from HEAD
-b573dab6f6bc97586587e703a25745d39def9b8d 661baeea05c9dbdca3b358605e1537102b6de1dc agibalovsu <agibalovsu@mail.ru> 1660080301 +0300	commit: add code HW Oauth
-661baeea05c9dbdca3b358605e1537102b6de1dc ea4f9d598e9d483de27b287d5a3b89cae7583185 agibalovsu <agibalovsu@mail.ru> 1660220938 +0300	commit: authenticate with GitHub
-ea4f9d598e9d483de27b287d5a3b89cae7583185 d0ec72fe5ae80023134257a75e088442da1f41a3 agibalovsu <agibalovsu@mail.ru> 1660738652 +0300	commit: sign in with vkontakte
-d0ec72fe5ae80023134257a75e088442da1f41a3 c42a38213d15119e01982b9830079c803880fbe0 agibalovsu <agibalovsu@mail.ru> 1660852247 +0300	commit: add changes to registrations controller
