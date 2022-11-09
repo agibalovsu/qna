@@ -32,4 +32,4 @@
 /config/database.yml
 /config/*.sphinx.conf
 /db/sphinx
-/.git-old/*
+/.git-old
