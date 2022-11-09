@@ -87,4 +87,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: '81.163.26.246' }
   config.hosts << '81.163.26.246'
+
+  config.action_controller.enable_fragment_cache_logging = true
 end
