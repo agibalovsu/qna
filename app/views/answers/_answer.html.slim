@@ -1,53 +1,52 @@
-- cache answer do
-  div class = "answer-#{answer.id}"
-    - if answer.best?  
-      p = answer.body
-      h4 = 'best answer'
-    - else
-      p = answer.body
-    
-    = render 'links/link', resource: answer 
-    
-    .answer_vote
-      = render 'shared/vote', resource: answer 
+div class = "answer-#{answer.id}"
+  - if answer.best?
+    p = answer.body
+    h4 = 'best answer'
+  - else
+    p = answer.body
+  
+  = render 'links/link', resource: answer 
+  
+  .answer_vote
+    = render 'shared/vote', resource: answer 
 
-    .comments
-      - if can?(:create, Comment)
-        = link_to 'New comment', '#', class: 'new-comment-link', remote: true, data: { klass: answer.class.to_s.downcase, id: answer.id }
-        = render 'comments/form', resource: answer
-        
-        p Comments:
-        = render answer.comments
+  .comments
+    - if can?(:create, Comment)
+      = link_to 'New comment', '#', class: 'new-comment-link', remote: true, data: { klass: answer.class.to_s.downcase, id: answer.id }
+      = render 'comments/form', resource: answer
 
-    - if can?(:edit, answer)
-      p = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id }
+      p Comments:
+      = render answer.comments
 
-    - if can?(:destroy, answer)
-      p = link_to 'Remove answer', answer_path(answer), class: 'delete-answer-link', remote: true, method: :delete, data: { answer_id: answer.id }
-        
-    = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" }, local: false do |f| 
-      p
-        = f.label :body, 'Edit answer'
-      p
-        = f.text_area :body
-      p
-        = f.label :files
-        = f.file_field :files, multiple: true
+  - if can?(:edit, answer)
+  	p = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id }
+
+  - if can?(:destroy, answer)
+    p = link_to 'Remove answer', answer_path(answer), class: 'delete-answer-link', remote: true, method: :delete, data: { answer_id: answer.id }
       
-      p Links:
-      p 
-        = f.fields_for :links do |l|
-          = render 'link_fields', f: l
-        .links
-          = link_to_add_association 'add link', f, :links
-      p    
-        = f.submit 'Save'
+  = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" }, local: false do |f| 
+    p
+      = f.label :body, 'Edit answer'
+    p
+      = f.text_area :body
+    p
+      = f.label :files
+      = f.file_field :files, multiple: true
+    p
+    p Links:
+    p 
+      = f.fields_for :links do |l|
+        = render 'link_fields', f: l
+      .links
+        = link_to_add_association 'add link', f, :links
+    p    
+      = f.submit 'Save'
 
-    - if can?(:best, answer) && !answer.best?
-        p = link_to 'Choose the best', best_answer_path(answer), class: 'best-answer-link', remote: true, data: { answer_id: answer.id }, method: :patch
-       
-    - if answer.files.attached? 
-      = render 'attachments/attachment', resource: answer
+  - if can?(:best, answer) && !answer.best? 
+      p = link_to 'Choose the best', best_answer_path(answer), class: 'best-answer-link', remote: true, data: { answer_id: answer.id }, method: :patch
+     
+  - if answer.files.attached? 
+    = render 'attachments/attachment', resource: answer
 
 
         

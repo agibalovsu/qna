@@ -1,12 +1,11 @@
-- cache question do 
-  = form_with model: question, class: 'hidden', html: { id: "edit-question-#{question.id}" }, local: false do |f|
-    p
-      = f.label :title, 'Your title'
-      = f.text_field :title
-    p
-      = f.label :body, 'Your body'
-      = f.text_area :body
-    p
-      = f.submit 'Save'
+= form_with model: question, class: 'hidden', html: { id: "edit-question-#{question.id}" }, local: false do |f|
+  p
+    = f.label :title, 'Your title'
+    = f.text_field :title
+  p
+    = f.label :body, 'Your body'
+    = f.text_area :body
+  p
+    = f.submit 'Save'
 
    

@@ -1,5 +1,4 @@
-- cache question do
-  div class = "question-#{question.id}"
+div class = "question-#{question.id}"
   .question-errors
     = render "shared/errors", resource: @question
 
@@ -23,7 +22,7 @@
       = render question.comments
 
   - if can?(:edit, question) 
-    p = link_to 'Edit question', '#', class: 'edit-question-link', remote: true, data: { question_id: question.id }
+  	p = link_to 'Edit question', '#', class: 'edit-question-link', remote: true, data: { question_id: question.id }
 
   - if can?(:destroy, question)
     p = link_to 'Remove question', question_path(question), method: :delete

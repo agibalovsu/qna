@@ -1,5 +1,4 @@
-- cache search_url do
-	= form_with url: search_path, class: 'form-search form-inline', method: :get do |f|
-		= f.text_field :query, placeholder: 'Search...', class: 'input-large search-query'
-		= f.select :resource, ['all', 'question', 'answer', 'comment', 'user']
-		= f.submit 'Find!', class: 'btn btn-info' 
+= form_with url: search_path, class: 'form-search form-inline', method: :get do |f|
+	= f.text_field :query, placeholder: 'Search...', class: 'input-large search-query'
+	= f.select :resource, ['all', 'question', 'answer', 'comment', 'user']
+	= f.submit 'Find!', class: 'btn btn-info' 
