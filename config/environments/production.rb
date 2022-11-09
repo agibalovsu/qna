@@ -8,14 +8,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         'smtp.gmail.com',
-    port:            587,
-    domain:          '81.163.26.246',
-    user_name:       Rails.application.credentials[:google_smtp][:email],
-    password:        Rails.application.credentials[:google_smtp][:password],
-    authentication:  'plain',
-    enable_starttls: true }
-
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: '81.163.26.246',
+    user_name: Rails.application.credentials[:google_smtp][:email],
+    password: Rails.application.credentials[:google_smtp][:password],
+    authentication: 'plain',
+    enable_starttls: true
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -57,7 +57,7 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
-  config.action_cable.allowed_request_origins = [ "https://81.163.26.246" ]
+  config.action_cable.allowed_request_origins = ['https://81.163.26.246']
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true

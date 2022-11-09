@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 ade04c5b6ebcc4e487d73975a3548db5877f3046 agibalovsu <agibalovsu@mail.ru> 1658400010 +0300	branch: Created from HEAD
+ade04c5b6ebcc4e487d73975a3548db5877f3046 302cbbc0d43df1c866ddcb0fa4bb9c4ef8d04479 agibalovsu <agibalovsu@mail.ru> 1659002704 +0300	commit: add concerns likable to question and answer
+302cbbc0d43df1c866ddcb0fa4bb9c4ef8d04479 eac31fdcaee0ae1a7773fb0fd0d0892dddbf2e1a agibalovsu <agibalovsu@mail.ru> 1659002847 +0300	commit: fix 9 with rubocop

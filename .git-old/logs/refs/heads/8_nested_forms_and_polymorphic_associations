@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 3d297c2b2374ec6f178f6e10b531f7980088247c agibalovsu <agibalovsu@mail.ru> 1658084000 +0300	branch: Created from HEAD
+3d297c2b2374ec6f178f6e10b531f7980088247c 6efc1553ee5b7dd9081b434a6a21bd0cee51c20e agibalovsu <agibalovsu@mail.ru> 1658301704 +0300	commit: add link
+6efc1553ee5b7dd9081b434a6a21bd0cee51c20e f04a126eff075b0badd3f204104ce59705f5b047 agibalovsu <agibalovsu@mail.ru> 1658388290 +0300	commit: add badges and correct with rubocop
+f04a126eff075b0badd3f204104ce59705f5b047 7072f94cc0bb380bcdecf0148b08da6772e86c3a agibalovsu <agibalovsu@mail.ru> 1658399428 +0300	commit: add change to spec and views
+7072f94cc0bb380bcdecf0148b08da6772e86c3a e42a939a5346705448bbc06aad7b96d488ae6984 agibalovsu <agibalovsu@mail.ru> 1658399669 +0300	commit: final changes

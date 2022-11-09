@@ -1,0 +1,53 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/agibalovsu/qna.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[branch "tdd-bdd"]
+	remote = origin
+	merge = refs/heads/tdd-bdd
+[branch "4_controller_test"]
+	remote = origin
+	merge = refs/heads/4_controller_test
+[branch "5_acceptance_test"]
+	remote = origin
+	merge = refs/heads/5_acceptance_test
+[branch "6_AJAX"]
+	remote = origin
+	merge = refs/heads/6_AJAX
+[branch "7_active_storage"]
+	remote = origin
+	merge = refs/heads/7_active_storage
+[branch "8_nested_forms_and_polymorphic_associations"]
+	remote = origin
+	merge = refs/heads/8_nested_forms_and_polymorphic_associations
+[branch "9_difeferent_forms_AJAX_in_rails"]
+	remote = origin
+	merge = refs/heads/9_difeferent_forms_AJAX_in_rails
+[branch "10_ActionCable"]
+	remote = origin
+	merge = refs/heads/10_ActionCable
+[branch "11_OAuth"]
+	remote = origin
+	merge = refs/heads/11_OAuth
+[branch "13_Authorization"]
+	remote = origin
+	merge = refs/heads/13_Authorization
+[branch "14_REST_API"]
+	remote = origin
+	merge = refs/heads/14_REST_API
+[branch "15_REST_API"]
+	remote = origin
+	merge = refs/heads/15_REST_API
+[branch "search"]
+	remote = origin
+	merge = refs/heads/search
+[branch "cache"]
+	remote = origin
+	merge = refs/heads/cache
