@@ -1,4 +1,5 @@
 div class = "comment-#{comment.id}"
   p = "#{comment.user.email}"
-  p = comment.body  
+  - cache comment do
+    p = comment.body  
       

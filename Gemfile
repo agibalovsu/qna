@@ -52,7 +52,13 @@ gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'actioncable', '~> 7.0.3.1'
+gem 'actionmailbox', '~> 7.0.3.1'
+gem 'actionpack', '~> 7.0.3.1'
+gem 'actiontext', '~> 7.0.3.1'
+gem 'actionview', '~> 7.0.3.1'
 gem 'active_model_serializers', '~> 0.10'
+gem 'activesupport', '~> 7.0.3.1'
 gem 'bootstrap'
 gem 'cancancan'
 gem 'cocoon'
@@ -64,6 +70,8 @@ gem 'handlebars'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jsbundling-rails', '~> 1.0'
+gem 'libv8-node', '~> 16.10.0.0'
+gem 'mini_racer'
 gem 'mysql2'
 gem 'octokit', '~> 4.0'
 gem 'oj'
@@ -71,23 +79,15 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-vkontakte'
+gem 'rails-dom-testing', '~> 2.0.3'
+gem 'rails-html-sanitizer', '~> 1.4.3'
 gem 'rails-ujs'
+gem 'sassc', '~> 2.1.0'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'thinking-sphinx'
-gem 'whenever', require: false
-gem 'activesupport', '~> 7.0.3.1'
-gem 'rails-dom-testing', '~> 2.0.3'
-gem 'rails-html-sanitizer', '~> 1.4.3'
-gem 'actionview', '~> 7.0.3.1'
-gem 'actionpack', '~> 7.0.3.1'
-gem 'actioncable', '~> 7.0.3.1'
-gem 'actionmailbox', '~> 7.0.3.1'
-gem 'actiontext', '~> 7.0.3.1'
-gem 'sassc', '~> 2.1.0'
-gem 'libv8-node', '~> 16.10.0.0'
-gem 'mini_racer'
 gem 'unicorn'
+gem 'whenever', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -99,16 +99,16 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'aws-sdk'
+  gem 'capistrano', require: false
+  gem 'capistrano3-unicorn', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', require: false
   gem 'capybara-email'
   gem 'letter_opener'
   gem 'web-console'
-  gem 'capistrano', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rvm', require: false
-  gem 'capistrano-passenger', require: false
-  gem 'capistrano-sidekiq', require: false
-  gem 'capistrano3-unicorn', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -127,5 +127,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webdrivers'
 end
-
-
