@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 822dbddb1aa8a6a8cf152c007c368331e1de8eba agibalovsu <agibalovsu@mail.ru> 1662063559 +0300	branch: Created from HEAD
-822dbddb1aa8a6a8cf152c007c368331e1de8eba d124713707f0a8ae1273367a8db2743f3e8b46b2 agibalovsu <agibalovsu@mail.ru> 1662234563 +0300	commit: add subscriptions
-d124713707f0a8ae1273367a8db2743f3e8b46b2 177528bebe092c8b9751fb3ef34880d3669cc8ca agibalovsu <agibalovsu@mail.ru> 1662407083 +0300	commit: add final changes and correct with rubocop + correct in feature tests

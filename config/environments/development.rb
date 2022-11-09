@@ -43,18 +43,18 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  #config.action_mailer.delivery_method = :letter_opener
-
+  # config.action_mailer.delivery_method = :letter_opener
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         'smtp.gmail.com',
-    port:            587,
-    domain:          '81.163.26.246',
-    user_name:       'agibalovsy@gmail.com',
-    password:        'mluqerhtsngpgsgt',
-    authentication:  'plain',
-    enable_starttls: true }
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: '81.163.26.246',
+    user_name: 'agibalovsy@gmail.com',
+    password: 'mluqerhtsngpgsgt',
+    authentication: 'plain',
+    enable_starttls: true
+  }
 
   config.action_mailer.perform_deliveries = true
 
@@ -86,5 +86,5 @@ Rails.application.configure do
   config.action_cable.disable_request_forgery_protection = false
 
   config.action_mailer.default_url_options = { host: '81.163.26.246' }
-  config.hosts << "81.163.26.246"
+  config.hosts << '81.163.26.246'
 end

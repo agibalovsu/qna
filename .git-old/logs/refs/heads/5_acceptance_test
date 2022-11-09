@@ -1,5 +1,0 @@
-0000000000000000000000000000000000000000 fac918610e8f47a1ed9ff92cbabbcab221eab5e0 agibalovsu <agibalovsu@mail.ru> 1654376173 +0300	branch: Created from HEAD
-fac918610e8f47a1ed9ff92cbabbcab221eab5e0 5a06e6960ad9d34655d4b3815779f4355d184680 agibalovsu <agibalovsu@mail.ru> 1654640387 +0300	commit: add acceptance test
-5a06e6960ad9d34655d4b3815779f4355d184680 8f4449e3e4aa1f3eb6a91a229b17072bd3391a18 agibalovsu <agibalovsu@mail.ru> 1654811538 +0300	commit: add history user can view list of question
-8f4449e3e4aa1f3eb6a91a229b17072bd3391a18 a7520b00473c468f92a2ea710112fc86c78b45e6 agibalovsu <agibalovsu@mail.ru> 1655533690 +0300	commit: add 5_acceptance_test homework
-a7520b00473c468f92a2ea710112fc86c78b45e6 5d250db517d0b9109eb1219d74e8f1abc929cc7f agibalovsu <agibalovsu@mail.ru> 1655565709 +0300	commit: add change to controllers method delete
