@@ -1,24 +1,16 @@
-# README
+Приложение вопросов и ответов
+Клон Stack Overflow, созданный в ходе прохождения курса Thinknetika. Дает возможность задать вопрос и получить на него ответ. Написан на Ruby on Rails 7.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Используемые технологии
+Sidekiq - фоновые задачи
+Cancancan - авторизация
+Devise - аутентификация
+Doorkeeper - OAuth2 провайдер
+Omniauth - аутентификация с помощью социальных сетей
+Slim - шаблонизатор
+Thinking-sphinx - поиск
+Сocoon - добавление файлов
+Capistrano - деплой приложения
+Тестирование моделей, контроллеров, интеграционные тесты(acceptance/feature)
+RSpec
+Capybara
