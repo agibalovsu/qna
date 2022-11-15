@@ -20,7 +20,7 @@
 
 :white_check_mark: Capistrano - деплой приложения
 
-*Тестирование моделей, контроллеров, интеграционные тесты(acceptance/feature)*:
+**Тестирование моделей, контроллеров, интеграционные тесты(acceptance/feature)**:
 
 :white_check_mark: RSpec
 
